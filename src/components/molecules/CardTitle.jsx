@@ -1,6 +1,6 @@
 import Label from "../atoms/label";
 
-const PokemonInfo = ({ pokemon }) => {
+const CardTitle = ({ pokemon }) => {
     return (
         <div className="pokemon-info">
             <Label>#{pokemon.number}</Label>
@@ -9,4 +9,4 @@ const PokemonInfo = ({ pokemon }) => {
     )
 }
 
-export default PokemonInfo;
+export default CardTitle;
