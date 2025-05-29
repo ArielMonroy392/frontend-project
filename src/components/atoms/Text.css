@@ -1,0 +1,30 @@
+.text-small {
+  font-size: 0.75rem; /* 12px */
+}
+
+.text-medium {
+  font-size: 1rem; /* 16px */
+}
+
+.text-large {
+  font-size: 1.25rem; /* 20px */
+}
+
+.text-xl {
+  font-size: 1.5rem; /* 24px */
+}
+
+.text-xxl {
+  font-size: 2rem; /* 32px */
+}
+.capitalize {
+  text-transform: capitalize;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-bold {
+  font-weight: 700;
+}
