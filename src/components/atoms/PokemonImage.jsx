@@ -1,7 +1,7 @@
-const Image = ({ src, alt, className = '', ...props }) => {
+const PokemonImage = ({ src, alt, className = '', ...props }) => {
     return (
         <img
-            src={src}
+            src={`pokemon/${src}`}
             alt={alt}
             className={`object-cover ${className}`}
             {...props}
@@ -9,4 +9,4 @@ const Image = ({ src, alt, className = '', ...props }) => {
     );
 }
 
-export default Image;
+export default PokemonImage;
