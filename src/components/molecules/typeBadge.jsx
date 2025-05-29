@@ -1,11 +1,12 @@
 import Icon from "../atoms/icon";
-import Label from "../atoms/label";
+import Text from "../atoms/Text";
+import './TypeBadge.css'; // Assuming you have a CSS file for styling
 
 const TypeBadge = ({ type }) => {
     return (
-        <span className="">
-            <Icon type={type} className="inline-block w-4 h-4 mr-1" />
-            <Label className={""}>{type}</Label>
+        <span className={`badge ${type}`}>
+            <Icon type={type} />
+            <Text className="text-small capitalize font-medium">{type}</Text>
         </span>
     )
 }
