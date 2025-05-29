@@ -1,10 +1,10 @@
-const Icon = ({ name, className = '', ...props }) => {
+import './Icon.css';
+
+const Icon = ({ type }) => {
     return (
-        <image src={`/icons/${name}.svg`}
-            alt={name}
-            className={`object-cover ${className}`}
-            {...props}>
-        </image>
+        <img src={`/icons/${type}.svg`}
+            alt={type}
+            className="type-icon" />
     );
 }
 
