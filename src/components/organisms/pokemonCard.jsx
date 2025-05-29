@@ -1,22 +1,31 @@
-import PokemonInfo from "../molecules/pokemonInfo";
+import PokemonImage from "../atoms/PokemonImage";
+import PokemonTitle from "../molecules/PokemonTitle";
 import TypeBadge from "../molecules/typeBadge";
+import './PokemonCard.css'; // Assuming you have a CSS file for styling
 
-const PokemonCard = ({pokemon }) => {
+const PokemonCard = ({ pokemon }) => {
     return (
-        <article className="card">
-            <PokemonInfo pokemon={pokemon} />
+        <article className={`card card-${pokemon.types[0]}`}>
+            <div className="card-info">
+                <PokemonTitle pokemon={pokemon} />
+                <ul>
+                    {
+                        pokemon.types.map((type, index) => (
+                            <li key={index}>
+                                <TypeBadge className={`type ${type}`} type={type}>{type}</TypeBadge>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
             <div className="card-image">
-                <Image
+                <PokemonImage
                     src={pokemon.image}
                     alt={pokemon.name}
-                    />
-                {
-                pokemon.types.map((type, index) => (
-                    <TypeBadge key={index} className={`type ${type}`}>{type}</TypeBadge>
-                ))
-            }
+                />
             </div>
-            
+
         </article>
     )
 }
