@@ -1,7 +1,9 @@
+import './PokemonImage.css';
+
 const PokemonImage = ({ src, alt, className = '', ...props }) => {
     return (
         <img
-            src={`pokemon/${src}`}
+            src={src}
             alt={alt}
             className={`object-cover ${className}`}
             {...props}
