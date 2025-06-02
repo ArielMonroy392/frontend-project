@@ -1,11 +1,11 @@
 import PokemonImage from "../atoms/PokemonImage";
 import PokemonTitle from "../molecules/PokemonTitle";
 import TypeBadge from "../molecules/typeBadge";
-import './PokemonCard.css'; // Assuming you have a CSS file for styling
+import './PokemonCard.css';
 
 const PokemonCard = ({ pokemon }) => {
     return (
-        <article className={`card card-${pokemon.types[0]}`}>
+        <article className={`card card-${pokemon.types[0].type.name}`}>
             <div className="card-info">
                 <PokemonTitle pokemon={pokemon} />
                 <ul>
@@ -21,7 +21,7 @@ const PokemonCard = ({ pokemon }) => {
 
             <div className="card-image">
                 <PokemonImage
-                    src={pokemon.image}
+                    src={pokemon.sprites.other['official-artwork'].front_default}
                     alt={pokemon.name}
                 />
             </div>

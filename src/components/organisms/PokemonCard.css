@@ -1,14 +1,13 @@
 .card {
-  width: 378px;
-  height: 250px;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
+  flex: 0;
 }
 
 .card-info {
-  flex: 1;
+  flex: 0;
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -17,11 +16,12 @@
 }
 
 .card-image {
-  flex: 1;
+  flex: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  width: 130px;
+  transform: translateX(10%);
 }
 
 ul {
