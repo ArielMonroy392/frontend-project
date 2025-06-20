@@ -5,7 +5,7 @@ const PokemonImage = ({ src, alt, className = '', ...props }) => {
         <img
             src={src}
             alt={alt}
-            className={`object-cover ${className}`}
+            className={`${className}`}
             {...props}
         />
     );
