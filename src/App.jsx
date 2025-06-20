@@ -10,7 +10,7 @@ function App() {
     const fetchPokemons = async () => {
       setLoading(true)
       try {
-        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=10')
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=12')
         const data = await response.json()
         const { results } = data
         const mappedPokemons = await Promise.all(results.map(async (pokemon) => {
