@@ -3,25 +3,27 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex: 0;
+  flex-basis: 350px;
 }
 
 .card-info {
-  flex: 0;
   padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1em;
+  flex-basis: 220px;
 }
 
 .card-image {
-  flex: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 130px;
-  transform: translateX(10%);
+  flex-basis: 50px;
+}
+
+.card-image > img {
+  transform: scale(3);
 }
 
 ul {

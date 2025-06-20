@@ -5,7 +5,7 @@ import './PokemonCard.css';
 
 const PokemonCard = ({ pokemon }) => {
     return (
-        <article className={`card card-${pokemon.types[0].type.name}`}>
+        <article className={`card bg-${pokemon.types[0].type.name}`}>
             <div className="card-info">
                 <PokemonTitle pokemon={pokemon} />
                 <ul>
