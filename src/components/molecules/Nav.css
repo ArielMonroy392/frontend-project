@@ -1,0 +1,33 @@
+.nav { 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #fff;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0 4rem;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+}
