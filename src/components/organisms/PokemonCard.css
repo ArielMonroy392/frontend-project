@@ -3,8 +3,10 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-basis: 350px;
+  padding: 40px 0;
+  position: relative;
 }
+
 
 .card-info {
   padding: 30px;
@@ -16,14 +18,28 @@
 }
 
 .card-image {
-  display: flex;
+  display: flex;  
   justify-content: center;
   align-items: center;
-  flex-basis: 50px;
+  flex-basis: 65px;
 }
 
 .card-image > img {
   transform: scale(3);
+}
+
+.dots {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 40%;
+}
+
+.pokeball {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 313px;
 }
 
 ul {
