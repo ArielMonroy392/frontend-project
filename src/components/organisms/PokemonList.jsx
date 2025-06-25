@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import PokemonCard from "./PokemonCard"
 import './PokemonList.css'
 
-export default function PokemonList({search}) {
+export default function PokemonList({ search }) {
   const [pokemons, setPokemons] = useState([])
   const [loading, setLoading] = useState(false)
 
@@ -12,16 +12,25 @@ export default function PokemonList({search}) {
     const fetchPokemons = async () => {
       setLoading(true)
       try {
+
+
         const url = search ? `https://pokeapi.co/api/v2/pokemon/${search}` : 'https://pokeapi.co/api/v2/pokemon?limit=10'
         const response = await fetch(url)
-        const data = await response.json()
-        console.log('Response:', data)
-        const { results } = data
-        const mappedPokemons = await Promise.all(results.map(async (pokemon) => {
-          const newPokemon = await fetch(pokemon.url)
-          return newPokemon.json()
-        }))
-        setPokemons(mappedPokemons)
+        if (isNaN(parseInt(search))) {
+          setPokemons([]) // Clear previous results if search is not a number
+          const data = await response.json()
+          console.log('Response:', data)
+          const { results } = data
+          const mappedPokemons = await Promise.all(results.map(async (pokemon) => {
+            const newPokemon = await fetch(pokemon.url)
+            return newPokemon.json()
+          }))
+          setPokemons(mappedPokemons)
+
+          return
+        } else {
+          setPokemons([await response.json()])
+        }
 
       } catch (error) {
         console.error('Error fetching pokemons:', error)
@@ -34,7 +43,6 @@ export default function PokemonList({search}) {
   }, [search])
 
   return (<div className="pokemon-list-container">
-    <span>{search}</span>
     {
       loading ? (
         <p>Loading...</p>
