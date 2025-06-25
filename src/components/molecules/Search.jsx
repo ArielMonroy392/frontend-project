@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../atoms/Input";
 import Text from "../atoms/Text";
 import "./Search.css"
@@ -9,12 +9,12 @@ export default function Search({onChangeSearch}) {
   const [search, setSearch] = useState("")
   const [debouncedSearch] = useDebounce(search, 300);
 
+  useEffect(() => {
+    onChangeSearch(debouncedSearch);
+  }, [debouncedSearch, onChangeSearch]);
 
   const handleInputChange = (event) => {
     setSearch(event.target.value);
-    if (onChangeSearch) {
-      onChangeSearch(event.target.value);
-    }
   }
   
   return <div className="banner">
