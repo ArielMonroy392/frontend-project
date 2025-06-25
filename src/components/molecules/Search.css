@@ -1,0 +1,10 @@
+.banner { 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #EA5D60;
+  padding: 48px 25%;
+  gap: 16px;
+  box-shadow: 0px 9px 11px 5px rgba(0,0,0,0.2);
+}
