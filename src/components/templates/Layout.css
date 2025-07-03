@@ -2,22 +2,15 @@
   display: grid;
   grid-template-areas:
     "header"
-    "main "
-    "main"
-    "footer";
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 50px 1fr 1fr 80px;
+    "main";
+  grid-template-rows: 50px 100%;
+  grid-template-columns: 100%;
 }
 
 .header {
   grid-area: header;
-  width: 100vw;
 }
 
 .main { 
   grid-area: main;
-}
-
-.footer {
-  grid-area: footer;
 }
