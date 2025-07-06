@@ -52,11 +52,13 @@ export default function PokemonList({
       </div>
 
       <ul className="pokemon-list">
-        {pokemons.map((pokemon) => (
+        {
+          pokemons.length > 0 ? pokemons.map((pokemon) => (
           <li key={pokemon.id} className="pokemon-list-item">
             <PokemonCard pokemon={pokemon}></PokemonCard>
           </li>
-        ))}
+        )) : <p>No Pokémon found</p>
+        }
       </ul>
       <div
         ref={loaderRef}

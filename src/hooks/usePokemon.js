@@ -16,7 +16,7 @@ export const usePokemon = () => {
         console.log('Fetching URL:', url) 
         const response = await fetch(url)
         const data = await response.json()
-
+        
         const pokemonDetails = await Promise.all(
           data.results.map(async (pokemon) => {
             const pokemonResponse = await fetch(pokemon.url)
@@ -36,8 +36,7 @@ export const usePokemon = () => {
     }
 
     fetchPokemons()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset])
+  }, [offset, limit])
 
   const filterPokemons = useCallback((search) => {
     if (!search) {
@@ -58,9 +57,9 @@ export const usePokemon = () => {
   }, [searchValue, filterPokemons])
 
   const fetchMore = useCallback(() => {
-    if (loading) return
+    if (loading && searchValue) return
     setOffset(prevOffset => prevOffset + limit)
-  }, [loading, limit, ])
+  }, [loading, limit, searchValue])
 
   return {
     pokemons,

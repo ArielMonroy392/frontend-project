@@ -1,14 +1,15 @@
+import { Outlet } from "react-router"
 import Nav from "../molecules/Nav"
 import "./Layout.css"
 
-export default function Layout ({children}) {
+export default function Layout () {
   return (
     <div className="layout">
       <header className="header">
         <Nav></Nav>
       </header>
       <main className="main">
-        {children}
+        <Outlet/>
       </main>
       <footer className="footer"></footer>
     </div>
