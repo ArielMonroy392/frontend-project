@@ -4,3 +4,7 @@ img {
   max-height: 100%;
   display: block;
 }
+
+.filter { 
+  filter: brightness(0);
+}
