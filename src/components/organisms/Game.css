@@ -1,0 +1,23 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.button-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.button-list li {
+  margin: 0;
+  flex: 1 202 auto;
+}
+
+.hidden-pokemon {
+  min-height: 475px;
+}
