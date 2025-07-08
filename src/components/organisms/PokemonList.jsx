@@ -38,7 +38,7 @@ export default function PokemonList({
 
   return (
     <div className="pokemon-list-container">
-      <div>
+      {/* <div>
         <label htmlFor="limit-select">Items per page:</label>
         <select
           id="limit-select"
@@ -49,7 +49,7 @@ export default function PokemonList({
           <option value="50">50</option>
           <option value="100">100</option>
         </select>
-      </div>
+      </div> */}
 
       <ul className="pokemon-list">
         {

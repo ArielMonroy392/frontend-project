@@ -11,7 +11,6 @@ export default function Layout () {
       <main className="main">
         <Outlet/>
       </main>
-      <footer className="footer"></footer>
     </div>
   )
 }
