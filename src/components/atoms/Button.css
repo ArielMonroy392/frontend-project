@@ -1,0 +1,26 @@
+.button {
+  padding: 20px 30px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  text-transform: capitalize;
+  font-weight: 700;
+}
+
+.primary {
+  background-color: #EA5D60;
+  color: white;
+}
+
+.primary:hover {
+  background-color: #D44C4F;
+}
+
+.secondary {
+  background-color: #F2F2F2;
+  color: #747476;
+}
+
+.secondary:hover {
+  background-color: #E0E0E0;
+}
