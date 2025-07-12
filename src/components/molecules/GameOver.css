@@ -1,0 +1,15 @@
+.score-display {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.score-label {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.score-value {
+  font-size: 1.2em;
+  color: #333;
+}
