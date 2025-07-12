@@ -1,0 +1,7 @@
+.language-selection {
+  background-color: #EA5D60;
+  display: flex;
+  padding: 3rem 4rem;
+  align-items: center;
+  gap: 1rem;
+}

@@ -1,13 +1,14 @@
 import PokemonImage from "../atoms/PokemonImage";
 import Button from "../atoms/Button";
 import "./Game.css";
+import PokemonLoader from "../atoms/PokeballLoader";
 
-export default function Game({ isLoading, randomPoke, hiddenPoke, isFinished, onSelectPokemon, language }) {
+export default function Game({ isLoading, randomPoke, hiddenPoke, isFinished, onSelectPokemon, language, tries, onNextTry }) {
 
   return (
     <div className="game-container">
       {isLoading ? (
-        <div>loading</div>
+        <PokemonLoader />
       ) : (
         <>
           <div className="hidden-pokemon">
@@ -30,6 +31,10 @@ export default function Game({ isLoading, randomPoke, hiddenPoke, isFinished, on
               </li>
             ))}
           </ul>}
+
+          {isFinished && tries < 3 && (
+            <Button variant="secondary" onClick={onNextTry}> Next pokemon </Button>
+          )}
         </>
       )}
     </div>

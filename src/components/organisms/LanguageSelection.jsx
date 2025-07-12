@@ -1,9 +1,11 @@
 import FlagButton from "../atoms/FlagButton";
+import './LanguageSelection.css';
+import Text from "../atoms/Text";
 
 export default function LanguageSelection({ languages, onLanguageChange }) {
   return (
-    <div>
-      <h2>Select Language</h2>
+    <div className="language-selection">
+      <Text className={"text-large text-white font-bold"}>Select Language</Text>
       <ul className="language-list">
         {languages.map((language) => (
           <li key={language}>
@@ -17,5 +19,5 @@ export default function LanguageSelection({ languages, onLanguageChange }) {
         ))}
       </ul>
     </div>
-  ) 
+  )
 }

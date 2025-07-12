@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo} from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 
 export default function useGame() {
   const languages = useMemo(() => ["ja", "en", "fr", "de", "es", "it", "ko", "zh-Hans", "zh-Hant"], []);
@@ -6,22 +6,19 @@ export default function useGame() {
   const [hiddenPoke, setHiddenPoke] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
-  const [language, setLanguage] = useState("ja");
+  const [language, setLanguage] = useState("en");
   const [score, setScore] = useState(0);
   const [tries, setTries] = useState(0);
 
   const onSelectPokemon = useCallback((pokemon) => {
     setTries(prev => prev + 1);
-
     if (pokemon.id === hiddenPoke?.id) {
-      alert("U Got it!");
       setScore(prev => prev + 1);
-    } else {
-      alert(`No, the Pokémon was ${hiddenPoke?.name?.get(language)}`);
     }
-
     setIsFinished(true);
-  }, [hiddenPoke, language]);
+  }, [hiddenPoke]);
+
+
 
   const onSetLanguage = useCallback((lang) => {
     if (languages.includes(lang)) {
@@ -59,6 +56,8 @@ export default function useGame() {
         };
       });
 
+
+
       const hiddenPokeIndex = Math.floor(Math.random() * 4);
       setHiddenPoke(mappedPokemon[hiddenPokeIndex]);
       setRandomPoke(mappedPokemon);
@@ -69,9 +68,17 @@ export default function useGame() {
     }
   }, []);
 
+
+  const onNextTry = useCallback(() => {
+    if (tries < 3) {
+      setIsFinished(false);
+      fetchRandomPokemon();
+    }
+  }, [tries, fetchRandomPokemon]);
+
   useEffect(() => {
     fetchRandomPokemon();
-  }, [fetchRandomPokemon, tries]);
+  }, [fetchRandomPokemon]);
 
   return {
     randomPoke,
@@ -82,6 +89,7 @@ export default function useGame() {
     fetchRandomPokemon,
     language,
     onSetLanguage,
+    onNextTry,
     languages,
     score,
     tries,
