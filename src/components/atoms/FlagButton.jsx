@@ -12,6 +12,7 @@ const countryCode = new Map([
   ["zh-Hans", "CN"]
 ]);
 
+import './FlagButton.css';
 
 export default function FlagButton({ language, onClick }) {
   return (
