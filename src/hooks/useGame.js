@@ -1,7 +1,8 @@
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { API_BASE_URL, MAX_TRIES, SUPPORTED_LANGUAGES, API_SPRITE_BASE_URL } from "../constants/game";
+import { toast } from "sonner";
 
 export default function useGame() {
-  const languages = useMemo(() => ["ja", "en", "fr", "de", "es", "it", "ko", "zh-Hans", "zh-Hant"], []);
   const [randomPoke, setRandomPoke] = useState([]);
   const [hiddenPoke, setHiddenPoke] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -14,19 +15,22 @@ export default function useGame() {
     setTries(prev => prev + 1);
     if (pokemon.id === hiddenPoke?.id) {
       setScore(prev => prev + 1);
+      toast.success(`Correct! ${pokemon.name.get(language)} is the hidden Pokémon!`);
+    } else {
+      toast.error(`Wrong! ${pokemon.name.get(language)} wasn´t the hidden Pokémon.`);
     }
     setIsFinished(true);
-  }, [hiddenPoke]);
+  }, [hiddenPoke, language]);
 
 
 
   const onSetLanguage = useCallback((lang) => {
-    if (languages.includes(lang)) {
+    if (SUPPORTED_LANGUAGES.includes(lang)) {
       setLanguage(lang);
     } else {
       console.error("Invalid language selected");
     }
-  }, [languages]);
+  }, []);
 
   const fetchRandomPokemon = useCallback(async () => {
     setIsLoading(true);
@@ -37,13 +41,13 @@ export default function useGame() {
     try {
       const randomPokemon = await Promise.all(
         randomArray.map(async (val) => {
-          const res = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${val}`);
+          const res = await fetch(`${API_BASE_URL}/${val}`);
           const data = await res.json();
           return data;
         })
       );
 
-      const mappedPokemon = randomPokemon.map((pokemon) => {
+      const mappedPokemon = await Promise.all(randomPokemon.map(async (pokemon) => {
         const names = new Map();
         pokemon.names.forEach((nameObj) => {
           names.set(nameObj.language.name, nameObj.name);
@@ -52,14 +56,19 @@ export default function useGame() {
         return {
           id: pokemon.id,
           name: names,
-          sprites: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`,
         };
-      });
-
-
-
+      }));
       const hiddenPokeIndex = Math.floor(Math.random() * 4);
-      setHiddenPoke(mappedPokemon[hiddenPokeIndex]);
+      const hiddenPokemon = mappedPokemon[hiddenPokeIndex];
+      const spriteUrl = `${API_SPRITE_BASE_URL}/${hiddenPokemon.id}.png`
+      await new Promise(resolve => {
+        const img = new Image();
+        img.src = spriteUrl;
+        img.onload = resolve;
+      })
+
+      hiddenPokemon.sprites = spriteUrl;
+      setHiddenPoke(hiddenPokemon);
       setRandomPoke(mappedPokemon);
     } catch (error) {
       console.error("Error fetching Pokémon:", error);
@@ -70,11 +79,18 @@ export default function useGame() {
 
 
   const onNextTry = useCallback(() => {
-    if (tries < 3) {
+    if (tries < MAX_TRIES) {
       setIsFinished(false);
       fetchRandomPokemon();
     }
   }, [tries, fetchRandomPokemon]);
+
+  const resetGame = useCallback(() => {
+    setScore(0);
+    setTries(0);
+    setIsFinished(false);
+    fetchRandomPokemon();
+  }, [fetchRandomPokemon]);
 
   useEffect(() => {
     fetchRandomPokemon();
@@ -85,13 +101,13 @@ export default function useGame() {
     hiddenPoke,
     isLoading,
     isFinished,
-    onSelectPokemon,
-    fetchRandomPokemon,
     language,
-    onSetLanguage,
-    onNextTry,
-    languages,
     score,
     tries,
+    onSelectPokemon,
+    fetchRandomPokemon,
+    onSetLanguage,
+    onNextTry,
+    resetGame
   };
 }
