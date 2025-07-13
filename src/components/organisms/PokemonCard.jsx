@@ -1,6 +1,6 @@
 import PokemonImage from "../atoms/PokemonImage";
 import PokemonTitle from "../molecules/PokemonTitle";
-import TypeBadge from "../molecules/typeBadge";
+import TypeBadge from "../molecules/TypeBadge";
 import "./PokemonCard.css";
 
 const PokemonCard = ({ pokemon }) => {
