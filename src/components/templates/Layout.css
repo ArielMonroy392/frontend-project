@@ -3,13 +3,13 @@
   grid-template-areas:
     "header"
     "main";
-  grid-template-rows: 50px 100%;
+  grid-template-rows: 4rem 100%;
 }
 
 .header {
   grid-area: header;
 }
 
-.main { 
+.main {
   grid-area: main;
 }
