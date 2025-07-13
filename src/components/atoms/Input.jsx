@@ -1,3 +1,4 @@
+import Icon from "./Icon"
 import "./Input.css"
 
 export default function Input({
@@ -6,14 +7,14 @@ export default function Input({
   value,
   onChange = () => { },
   className,
-  icon = ""
+  icon = "icons/search"
 }) {
   return (
 
     <div className="input-container">
-      <span className="material-symbols-outlined icon">
-        {icon}
-      </span>
+      <div className="input-icon">
+        <Icon icon={icon} color={'gray'} size={24} />
+      </div>
       <input type={type}
         placeholder={placeholder}
         onChange={onChange}
