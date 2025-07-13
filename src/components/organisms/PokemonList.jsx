@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import PokemonCard from "./PokemonCard";
+import PokemonCard from "./PokemonCard"
 import "./PokemonList.css";
 
 export default function PokemonList({
@@ -54,10 +54,10 @@ export default function PokemonList({
       <ul className="pokemon-list">
         {
           pokemons.length > 0 ? pokemons.map((pokemon) => (
-          <li key={pokemon.id} className="pokemon-list-item">
-            <PokemonCard pokemon={pokemon}></PokemonCard>
-          </li>
-        )) : <p>No Pokémon found</p>
+            <li key={pokemon.id} className="pokemon-list-item">
+              <PokemonCard pokemon={pokemon}></PokemonCard>
+            </li>
+          )) : <p>No Pokémon found</p>
         }
       </ul>
       <div
