@@ -4,14 +4,14 @@ import Text from "../atoms/Text";
 import "./Search.css"
 import { useDebounce } from "use-debounce";
 
-export default function Search({search, onChangeSearch}) {
+export default function Search({ search, onChangeSearch }) {
 
   const [debouncedSearch] = useDebounce(search, 300);
 
   useEffect(() => {
     onChangeSearch(debouncedSearch);
   }, [debouncedSearch, onChangeSearch]);
-  
+
   return <div className="banner">
     <Input
       value={search}
