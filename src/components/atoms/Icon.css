@@ -1,6 +1,4 @@
-.type-icon {
-  width: 15px;
-  height: 15px;
+.icon {
   object-fit: contain;
   display: inline-block;
   vertical-align: middle;
