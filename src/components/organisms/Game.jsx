@@ -3,6 +3,7 @@ import Button from "../atoms/Button";
 import "./Game.css";
 import PokemonLoader from "../atoms/PokeballLoader";
 import { MAX_TRIES } from "../../constants/game";
+import Icon from "../atoms/Icon";
 
 export default function Game({ isLoading, randomPoke, hiddenPoke, isFinished, onSelectPokemon, language, tries, onNextTry }) {
   console.log(randomPoke);
@@ -35,7 +36,10 @@ export default function Game({ isLoading, randomPoke, hiddenPoke, isFinished, on
           </ul>}
 
           {isFinished && tries < MAX_TRIES && (
-            <Button variant="secondary" onClick={onNextTry}> Next pokemon </Button>
+            <Button variant="secondary" onClick={onNextTry}>
+              Next pokemon
+              <Icon icon="chevron_right" size={24} />
+            </Button>
           )}
         </>
       )}
