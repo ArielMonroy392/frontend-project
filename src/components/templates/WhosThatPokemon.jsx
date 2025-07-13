@@ -4,6 +4,8 @@ import Game from "../organisms/Game";
 import LanguageSelection from "../organisms/LanguageSelection";
 import Text from "../atoms/Text";
 import { MAX_TRIES } from "../../constants/game";
+import Icon from "../atoms/Icon";
+import "./WhosThatPokemon.css";
 
 export default function WhosThatPokemon() {
 
@@ -20,7 +22,7 @@ export default function WhosThatPokemon() {
     resetGame
   } = useGame();
   return (
-    <>
+    <div className="whos-that-pokemon">
       <LanguageSelection onLanguageChange={onSetLanguage} />
       <Game
         isLoading={isLoading}
@@ -34,11 +36,14 @@ export default function WhosThatPokemon() {
       />
       {
         tries === MAX_TRIES &&
-        <>
+        <div className="game-over">
           <Text className="text-xl">Your score: {" "} {score}</Text>
-          <Button onClick={resetGame}>Restart</Button>
-        </>
+          <Button onClick={resetGame}>
+            Restart
+            <Icon icon="replay" size={24} />
+          </Button>
+        </div>
       }
-    </>
+    </div>
   )
 }
