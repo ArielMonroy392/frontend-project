@@ -24,3 +24,13 @@
 .secondary:hover {
   background-color: #E0E0E0;
 }
+
+.disabled {
+  background-color: #E0E0E0;
+  color: #B0B0B0;
+  cursor: not-allowed;
+}
+
+.disabled:hover {
+  background-color: #E0E0E0;
+}
