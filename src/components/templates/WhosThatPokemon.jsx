@@ -1,7 +1,9 @@
 import useGame from "../../hooks/useGame";
-import { GameOver } from "../molecules/GameOver";
+import Button from "../atoms/Button";
 import Game from "../organisms/Game";
 import LanguageSelection from "../organisms/LanguageSelection";
+import Text from "../atoms/Text";
+import { MAX_TRIES } from "../../constants/game";
 
 export default function WhosThatPokemon() {
 
@@ -10,33 +12,32 @@ export default function WhosThatPokemon() {
     hiddenPoke,
     isFinished,
     onSelectPokemon,
-    languages,
     language,
     onSetLanguage,
     onNextTry,
     tries,
-    score
+    score,
+    resetGame
   } = useGame();
   return (
     <>
-      <LanguageSelection languages={languages} onLanguageChange={onSetLanguage} />
+      <LanguageSelection onLanguageChange={onSetLanguage} />
+      <Game
+        isLoading={isLoading}
+        randomPoke={randomPoke}
+        hiddenPoke={hiddenPoke}
+        isFinished={isFinished}
+        onSelectPokemon={onSelectPokemon}
+        language={language}
+        tries={tries}
+        onNextTry={onNextTry}
+      />
       {
-        tries < 3 ? (
-          <Game
-            isLoading={isLoading}
-            randomPoke={randomPoke}
-            hiddenPoke={hiddenPoke}
-            isFinished={isFinished}
-            onSelectPokemon={onSelectPokemon}
-            language={language}
-            tries={tries}
-            onNextTry={onNextTry}
-          />
-        ) : (
-          <div className="game-over">
-            <GameOver score={score} />
-          </div>
-        )
+        tries === MAX_TRIES &&
+        <>
+          <Text className="text-xl">Your score: {" "} {score}</Text>
+          <Button onClick={resetGame}>Restart</Button>
+        </>
       }
     </>
   )
