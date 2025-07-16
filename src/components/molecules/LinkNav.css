@@ -1,0 +1,19 @@
+.nav-link {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  background-color: #f0f0f0;
+  color: #EA5D60;
+  /* indigo */
+}
+
+.nav-link.active {
+  background-color: #EA5D60;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
