@@ -8,12 +8,13 @@ import WhosThatPokemon from './components/templates/WhosThatPokemon'
 function App() {
 
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path='/' element={<List />}></Route>
-        <Route path='/game' element={<WhosThatPokemon />}> </Route>
-      </Route>
-    </Routes>
+    // <Routes>
+    //   <Route element={<Layout />}>
+    //     <Route path='list' element={<List/>}></Route>
+    //     <Route path='/' element={ <WhosThatPokemon/>}> </Route>
+    //   </Route>
+    // </Routes>
+    <></>
   )
 }
 
