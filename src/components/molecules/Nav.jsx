@@ -2,6 +2,7 @@ import "./Nav.css";
 import Text from "../atoms/Text";
 import { Link } from "react-router";
 import { NavLink } from "react-router";
+import LinkNav from "./LinkNav";
 
 export default function Nav() {
   return (
@@ -11,8 +12,8 @@ export default function Nav() {
         <Text className="nav-title">Pokédex</Text>
       </div>
       <ul className="nav-links">
-        <li><NavLink to={'/'} style={({ isActive }) => isActive ? { background: 'lightgray' } : {}}>Home</NavLink></li>
-        <li><NavLink to={'/list'} style={({ isActive }) => isActive ? { background: 'lightgray' } : {}}>List</NavLink></li>
+        <li><LinkNav to={'/'}>Home  </LinkNav></li>
+        <li><LinkNav to={'/list'}>List</LinkNav></li>
       </ul>
     </nav>
   )
