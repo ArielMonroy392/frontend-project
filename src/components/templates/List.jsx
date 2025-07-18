@@ -1,18 +1,33 @@
-import { usePokemon } from "../../hooks/usePokemon"
-import Search from "../molecules/Search"
-import PokemonList from "../organisms/PokemonList"
+import { usePokemon } from "../../hooks/usePokemon";
+import PokemonLoader from "../atoms/PokeballLoader";
+import Search from "../molecules/Search";
+import PokemonList from "../organisms/PokemonList";
 
 export default function List() {
-  const { setSearchValue, filteredPokemons, searchValue, isLoading, setLimit, fetchMore } = usePokemon()
+  const {
+    filteredPokemons,
+    loading,
+    fetchMore,
+    searchValue,
+    limits,
+    updateLimits,
+    maxAvailable,
+    resetLimits,
+    filterPokemons
+  } = usePokemon();
+
   return (
     <>
-      <Search search={searchValue} onChangeSearch={setSearchValue} />
+      <Search searchValue={searchValue} onChangeSearch={filterPokemons} />
       <PokemonList
         pokemons={filteredPokemons}
-        isLoading={isLoading}
-        setLimit={setLimit}
+        loading={loading}
         fetchMore={fetchMore}
+        updateLimits={updateLimits}
+        limits={limits}
+        maxAvailable={maxAvailable}
+        resetLimits={resetLimits}
       />
     </>
-  )
+  );
 }
