@@ -6,23 +6,25 @@ export default function Input({
   placeholder = "",
   value,
   onChange = () => { },
-  className,
-  icon = "icons/search"
+  className = "",
+  icon,
+  ...rest
 }) {
   return (
 
     <div className="input-container">
-      <div className="input-icon">
-        <Icon icon={icon} color={'gray'} size={24} />
-      </div>
+      {
+        icon && <div className="input-icon">
+          <Icon icon={icon} color={'gray'} size={24} />
+        </div>
+      }
       <input type={type}
         placeholder={placeholder}
         onChange={onChange}
         value={value}
-        className={`${className} input`}
-      >
-
-      </input>
+        className={`${className} input ${icon ? "input-with-icon" : ""}`}
+        {...rest}
+      />
     </div>
   )
 }
