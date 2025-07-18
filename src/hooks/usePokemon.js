@@ -1,81 +1,114 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import { toast } from 'sonner';
+const limit = 25;
 
 export const usePokemon = () => {
-  const [pokemons, setPokemons] = useState([])
-  const [filteredPokemons, setFilteredPokemons] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [limit, setLimit] = useState(25)
-  const [offset, setOffset] = useState(0)
-  const [searchValue, setSearchValue] = useState('')
+  const [pokemons, setPokemons] = useState([]);
+  const [filteredPokemons, setFilteredPokemons] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const [searchValue, setSearchValue] = useState('');
+  const [limits, setLimits] = useState([1, 0]);
 
-  useEffect(() => {
-    const fetchPokemons = async () => {
-      setLoading(true)
-      try {
-       
-          const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
-          console.log('Fetching URL:', url) 
-          const response = await fetch(url)
-          const data = await response.json()
-        
-          localStorage.setItem('pokemonData', JSON.stringify(data))
-        
-        const pokemonDetails = await Promise.all(
-          data.results.map(async (pokemon) => {
-            const pokemonResponse = await fetch(pokemon.url)
-            return pokemonResponse.json()
-          })
-        )
 
-        setPokemons(prev =>
-          offset === 0 ? pokemonDetails : [...prev, ...pokemonDetails]
-        )
-      
-
-      } catch (error) {
-        console.error('Error fetching pokemons:', error)
-      } finally {
-        setLoading(false)
-      }
+  const fetchPokemons = useCallback(async () => {
+    setLoading(true);
+    try {
+      const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      const pokemonDetails = await Promise.all(
+        data.results.map(async (pokemon) => {
+          const res = await fetch(pokemon.url);
+          return res.json();
+        })
+      );
+      setPokemons(prev =>
+        offset === 0 ? pokemonDetails : [...prev, ...pokemonDetails]
+      );
+      setLimits(prev => [1, prev[1] + pokemonDetails.length]);
+      setFilteredPokemons(prev =>
+        offset === 0 ? pokemonDetails : [...prev, ...pokemonDetails]
+      );
+    } catch (error) {
+      console.error("Failed to fetch pokemons:", error);
+    } finally {
+      console.log("Pokemons fetched:");
+      setLoading(false);
     }
+  }, [offset]);
 
-    fetchPokemons()
-  }, [offset, limit])
 
   const filterPokemons = useCallback((search) => {
+    setSearchValue(search);
+    const rangePokemon = pokemons.slice(limits[0] - 1, limits[1]);
     if (!search) {
-      setFilteredPokemons(pokemons)
-      return
+      setFilteredPokemons(rangePokemon);
+      return;
     }
-
-    const filtered = pokemons.filter(pokemon =>
+    const filtered = rangePokemon.filter(pokemon =>
       pokemon.name.toLowerCase().includes(search.toLowerCase()) ||
       pokemon.id.toString().includes(search)
-    )
+    );
+    setFilteredPokemons(filtered);
+  }, [pokemons, limits]);
 
-    setFilteredPokemons(filtered)
-  }, [pokemons])
-
-  useEffect(() => {
-    filterPokemons(searchValue)
-  }, [searchValue, filterPokemons])
 
   const fetchMore = useCallback(() => {
-    if (loading || searchValue) return
-    setOffset(prevOffset => prevOffset + limit)
-  }, [loading, limit, searchValue])
+    if (loading || searchValue || limits[0] !== 1 || limits[1] !== pokemons.length) {
+      return;
+    }
+    setOffset(prev => prev + limit);
+  }, [loading, searchValue, limits, pokemons.length]);
+
+
+
+  const updateLimits = useCallback((newLimits) => {
+
+    if (newLimits.length !== 2 || newLimits.some(isNaN)) {
+      toast.error("Please enter valid minimum and maximum values.");
+      return;
+    }
+    if (newLimits[0] < 1 || newLimits[1] > pokemons.length || newLimits[0] >= newLimits[1]) {
+      toast.error("Invalid range. Please ensure the minimum is less than the maximum and within the available Pokémon range.");
+      return;
+    }
+    const min = Number(newLimits[0]);
+    const max = Number(newLimits[1]);
+    setLimits([min, max]);
+    setFilteredPokemons(pokemons.slice(min - 1, max));
+    setSearchValue('');
+  }, [pokemons]);
+
+
+
+  const maxAvailable = useMemo(() => pokemons.length, [pokemons]);
+
+
+  const resetLimits = useCallback(() => {
+    setLimits([1, maxAvailable]);
+    setFilteredPokemons(pokemons.slice(0, maxAvailable));
+    setSearchValue('');
+  }, [maxAvailable, pokemons]);
+
+
+
+
+  useEffect(() => {
+    fetchPokemons();
+  }, [fetchPokemons]);
+
 
   return {
     pokemons,
     filteredPokemons,
     loading,
-    setLimit,
-    setOffset,
-    setSearchValue,
     searchValue,
-    limit,
-    offset,
-    filterPokemons,
     fetchMore,
-  }
-}
+    updateLimits,
+    limits,
+    maxAvailable,
+    resetLimits,
+    filterPokemons
+  };
+};
