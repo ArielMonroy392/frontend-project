@@ -5,9 +5,10 @@ import TypeBadge from "../molecules/TypeBadge";
 import "./PokemonCard.css";
 
 const PokemonCard = ({ pokemon }) => {
+  console.log(pokemon);
   return (
-    <article className={`card bg-${pokemon.types[0].type.name}`}>
-      <Link to={`/pokemon/${pokemon.id}`}>
+    <Link to={`/pokemon/${pokemon.id}`}>
+      <article className={`card bg-${pokemon.types[0]}`}>
         <div className="bg">
           <img src="/dots.svg" alt="Dots" className="dots" />
           <img src="/pokeball-bg.svg" alt="Pokeball" className="pokeball" />
@@ -27,12 +28,12 @@ const PokemonCard = ({ pokemon }) => {
 
         <div className="card-image">
           <PokemonImage
-            src={pokemon.sprites.other["official-artwork"].front_default}
+            src={pokemon.sprites.official}
             alt={pokemon.name}
           />
         </div>
-      </Link>
-    </article>
+      </article>
+    </Link>
   );
 };
 

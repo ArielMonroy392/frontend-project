@@ -4,9 +4,9 @@ import './TypeBadge.css';
 
 const TypeBadge = ({ type }) => {
     return (
-        <span className={`badge ${type.type.name}`}>
-            <Icon icon={`${type.type.name}`} />
-            <Text className="text-small capitalize font-medium">{type.type.name}</Text>
+        <span className={`badge ${type}`}>
+            <Icon icon={`${type}`} />
+            <Text className="text-small capitalize font-medium">{type}</Text>
         </span>
     )
 }

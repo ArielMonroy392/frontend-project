@@ -24,7 +24,7 @@
   flex-basis: 65px;
 }
 
-.card-image>*>img {
+.card-image>img {
   transform: scale(3);
 }
 
