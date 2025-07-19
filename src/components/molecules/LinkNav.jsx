@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import "./linknav.css";
+import "./LinkNav.css";
 
 export default function LinkNav({ to, children }) {
   return (
