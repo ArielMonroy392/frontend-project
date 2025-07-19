@@ -154,3 +154,11 @@ body {
 .bg-bug {
   background-color: #8BD674;
 }
+
+.text-default {
+  color: #000;
+}
+
+.text-white {
+  color: #fff;
+}
