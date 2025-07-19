@@ -1,6 +1,6 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
-import { fetchPokemonById, fetchPokemonSpecies } from '../services/PokemonServices';
-import { formatPokemonData } from '../utils/Utils';
+import {useCallback, useEffect, useMemo, useState} from 'react';
+import {fetchPokemonById, fetchPokemonSpecies} from '../services/PokemonServices';
+import {formatPokemonData} from '../utils/Utils';
 
 const usePokemonInfo = ({ id }) => {
 
@@ -15,6 +15,7 @@ const usePokemonInfo = ({ id }) => {
       const speciesData = await fetchPokemonSpecies(id);
       const formattedPokemon = formatPokemonData(pokemonData, speciesData);
       setFormattedPokemon(formattedPokemon);
+      console.log(formattedPokemon);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -28,12 +29,10 @@ const usePokemonInfo = ({ id }) => {
     }
   }, [id, findFormattedPokemon]);
 
-  const data = useMemo(() => {
-    if (loading) return { loading: true };
-    if (error) return { error };
-    return { pokemon: formattedPokemon };
+  return useMemo(() => {
+    if (loading) return {loading: true};
+    if (error) return {error};
+    return {pokemon: formattedPokemon};
   }, [loading, error, formattedPokemon]);
-
-  return data;
 }
 export default usePokemonInfo;

@@ -1,4 +1,5 @@
 import pokeAxios from "./Axios";
+import {formatPokemon} from "../utils/Utils.js";
 
 export async function fetchPokemons({ offset, limit }) {
   const response = await pokeAxios.get("pokemon", {
@@ -16,7 +17,7 @@ export async function fetchPokemons({ offset, limit }) {
     })
   );
 
-  return pokemonDetails;
+  return pokemonDetails.map((pokemon) => { return formatPokemon(pokemon); });
 }
 
 export async function fetchPokemonById(id) {

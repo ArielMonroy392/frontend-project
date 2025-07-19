@@ -3,9 +3,9 @@ function formatPokemonData(pokemon, species) {
     (entry) => entry.language.name === 'en'
   );
 
-  const formatted = {
+  return {
     name: pokemon.name,
-    national_pokedex_id: species.id,
+    id: species.id,
     species: species.genera.find((g) => g.language.name === 'en')?.genus,
     height: pokemon.height,
     weight: pokemon.weight,
@@ -26,8 +26,19 @@ function formatPokemonData(pokemon, species) {
     evolution_chain_url: species.evolution_chain.url,
     flavor_text: englishFlavor?.flavor_text?.replace(/\f|\n/g, ' ').trim(),
   };
-
-  return formatted;
 }
 
-export { formatPokemonData };
+function formatPokemon (pokemon ) {
+  return {
+    name: pokemon.name,
+    types: pokemon.types.map((t) => t.type.name),
+    sprites: {
+      official: pokemon.sprites.other['official-artwork'].front_default,
+      shiny: pokemon.sprites.other['official-artwork'].front_shiny
+    },
+    id: pokemon.id,
+  }
+}
+
+
+export { formatPokemonData, formatPokemon };

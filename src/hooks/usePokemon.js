@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { toast } from 'sonner';
+import { fetchPokemons as fetchPokemonsService } from "../services/PokemonServices.js";
+
 const limit = 25;
 
 export const usePokemon = () => {
@@ -14,15 +16,7 @@ export const usePokemon = () => {
   const fetchPokemons = useCallback(async () => {
     setLoading(true);
     try {
-      const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      const pokemonDetails = await Promise.all(
-        data.results.map(async (pokemon) => {
-          const res = await fetch(pokemon.url);
-          return res.json();
-        })
-      );
+      const pokemonDetails = await fetchPokemonsService({offset, limits});
       setPokemons(prev =>
         offset === 0 ? pokemonDetails : [...prev, ...pokemonDetails]
       );
@@ -30,6 +24,7 @@ export const usePokemon = () => {
       setFilteredPokemons(prev =>
         offset === 0 ? pokemonDetails : [...prev, ...pokemonDetails]
       );
+      console.log(pokemonDetails);
     } catch (error) {
       console.error("Failed to fetch pokemons:", error);
     } finally {
