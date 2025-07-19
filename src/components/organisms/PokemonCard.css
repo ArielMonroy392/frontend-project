@@ -18,13 +18,13 @@
 }
 
 .card-image {
-  display: flex;  
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-basis: 65px;
 }
 
-.card-image > img {
+.card-image>*>img {
   transform: scale(3);
 }
 
@@ -49,6 +49,6 @@ ul {
   display: inline-flex;
 }
 
-li{
+li {
   padding: 0;
 }
