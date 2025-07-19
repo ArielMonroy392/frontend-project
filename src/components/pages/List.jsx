@@ -1,5 +1,4 @@
 import { usePokemon } from "../../hooks/usePokemon";
-import PokemonLoader from "../atoms/PokeballLoader";
 import Search from "../molecules/Search";
 import PokemonList from "../organisms/PokemonList";
 
