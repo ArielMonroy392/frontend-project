@@ -37,8 +37,8 @@
 
 .pokeball {
   position: absolute;
-  right: 0px;
-  top: 0px;
+  right: 0;
+  top: 0;
   height: 313px;
 }
 
