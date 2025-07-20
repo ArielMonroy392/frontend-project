@@ -25,6 +25,7 @@ function formatPokemonData(pokemon, species) {
     },
     evolution_chain_url: species.evolution_chain.url,
     flavor_text: englishFlavor?.flavor_text?.replace(/\f|\n/g, ' ').trim(),
+    generation: generationNameToNumber(species.generation.name),
   };
 }
 
@@ -41,3 +42,24 @@ function formatPokemon(pokemon) {
 }
 
 export { formatPokemonData, formatPokemon };
+
+function generationNameToNumber(name) {
+  console.log(name);
+  const romanMap = {
+    i: 1,
+    ii: 2,
+    iii: 3,
+    iv: 4,
+    v: 5,
+    vi: 6,
+    vii: 7,
+    viii: 8,
+    ix: 9,
+  };
+
+  const match = name.match(/^generation-(i{1,3}|iv|v|vi{0,3}|ix)$/);
+  if (!match) return null;
+
+  const roman = match[1];
+  return romanMap[roman] || null;
+}
