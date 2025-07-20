@@ -1,7 +1,5 @@
 import './Nav.css';
 import Text from '../atoms/Text';
-import { Link } from 'react-router';
-import { NavLink } from 'react-router';
 import LinkNav from './LinkNav';
 
 export default function Nav() {
