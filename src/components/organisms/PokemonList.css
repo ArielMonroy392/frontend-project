@@ -39,10 +39,9 @@ li {
   width: 100%;
 }
 
-.pokemon-list-range-form>*>input {
+.pokemon-list-range-form > * > input {
   width: 100%;
 }
-
 
 .pokemon-list-range-actions {
   display: flex;

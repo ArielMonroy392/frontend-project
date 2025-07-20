@@ -1,10 +1,10 @@
-import { useEffect, useRef } from "react";
-import PokemonCard from "./PokemonCard";
-import PokemonLoader from "../atoms/PokeballLoader";
-import "./PokemonList.css";
-import Button from "../atoms/Button";
-import Input from "../atoms/Input";
-import { toast } from "sonner";
+import { useEffect, useRef } from 'react';
+import PokemonCard from './PokemonCard';
+import PokemonLoader from '../atoms/PokeballLoader';
+import './PokemonList.css';
+import Button from '../atoms/Button';
+import Input from '../atoms/Input';
+import { toast } from 'sonner';
 
 export default function PokemonList({
   pokemons,
@@ -40,7 +40,7 @@ export default function PokemonList({
         },
         {
           root: null,
-          rootMargin: "50px",
+          rootMargin: '50px',
           threshold: 0.1,
         }
       );
@@ -62,14 +62,14 @@ export default function PokemonList({
     maxLimitInput.current.value = '';
   };
 
-  const handleSetNewLimits = (e) => {
+  const handleSetNewLimits = e => {
     e.preventDefault();
     const min = minLimitInput.current.value;
     const max = maxLimitInput.current.value;
     if (min && max) {
       updateLimits([min, max]);
     } else {
-      toast.error("Please enter both minimum and maximum values.");
+      toast.error('Please enter both minimum and maximum values.');
     }
   };
 
@@ -83,7 +83,9 @@ export default function PokemonList({
           <Button type="submit">Apply</Button>
         </form>
         <div className="pokemon-list-range-actions">
-          <Button variant="secondary" onClick={handleResetLimits}>Reset Filters</Button>
+          <Button variant="secondary" onClick={handleResetLimits}>
+            Reset Filters
+          </Button>
         </div>
         <p>
           Showing {pokemons.length} of {maxAvailable} Pokémon
@@ -91,7 +93,7 @@ export default function PokemonList({
       </div>
       <ul className="pokemon-list">
         {pokemons.length > 0 ? (
-          pokemons.map((pokemon) => (
+          pokemons.map(pokemon => (
             <li key={pokemon.id} className="pokemon-list-item">
               <PokemonCard pokemon={pokemon} />
             </li>
@@ -100,7 +102,10 @@ export default function PokemonList({
           <p>No Pokémon found</p>
         )}
       </ul>
-      <div ref={loaderRef} style={{ height: 40, marginTop: 40, textAlign: "center" }}>
+      <div
+        ref={loaderRef}
+        style={{ height: 40, marginTop: 40, textAlign: 'center' }}
+      >
         {loading && <PokemonLoader />}
       </div>
     </div>

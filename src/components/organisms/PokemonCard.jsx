@@ -1,8 +1,8 @@
-import { Link } from "react-router";
-import PokemonImage from "../atoms/PokemonImage";
-import PokemonTitle from "../molecules/PokemonTitle";
-import TypeBadge from "../molecules/TypeBadge";
-import "./PokemonCard.css";
+import { Link } from 'react-router';
+import PokemonImage from '../atoms/PokemonImage';
+import PokemonTitle from '../molecules/PokemonTitle';
+import TypeBadge from '../molecules/TypeBadge';
+import './PokemonCard.css';
 
 const PokemonCard = ({ pokemon }) => {
   console.log(pokemon);
@@ -27,10 +27,7 @@ const PokemonCard = ({ pokemon }) => {
         </div>
 
         <div className="card-image">
-          <PokemonImage
-            src={pokemon.sprites.official}
-            alt={pokemon.name}
-          />
+          <PokemonImage src={pokemon.sprites.official} alt={pokemon.name} />
         </div>
       </article>
     </Link>

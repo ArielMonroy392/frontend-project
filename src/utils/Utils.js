@@ -1,24 +1,24 @@
 function formatPokemonData(pokemon, species) {
   const englishFlavor = species.flavor_text_entries.find(
-    (entry) => entry.language.name === 'en'
+    entry => entry.language.name === 'en'
   );
 
   return {
     name: pokemon.name,
     id: species.id,
-    species: species.genera.find((g) => g.language.name === 'en')?.genus,
+    species: species.genera.find(g => g.language.name === 'en')?.genus,
     height: pokemon.height,
     weight: pokemon.weight,
-    abilities: pokemon.abilities.map((a) => ({
+    abilities: pokemon.abilities.map(a => ({
       name: a.ability.name,
       hidden: a.is_hidden,
     })),
-    stats: pokemon.stats.map((s) => ({
+    stats: pokemon.stats.map(s => ({
       name: s.stat.name,
       base: s.base_stat,
       effort: s.effort,
     })),
-    types: pokemon.types.map((t) => t.type.name),
+    types: pokemon.types.map(t => t.type.name),
     sprites: {
       official: pokemon.sprites.other['official-artwork'].front_default,
       shiny: pokemon.sprites.other['official-artwork'].front_shiny,
@@ -28,17 +28,16 @@ function formatPokemonData(pokemon, species) {
   };
 }
 
-function formatPokemon (pokemon ) {
+function formatPokemon(pokemon) {
   return {
     name: pokemon.name,
-    types: pokemon.types.map((t) => t.type.name),
+    types: pokemon.types.map(t => t.type.name),
     sprites: {
       official: pokemon.sprites.other['official-artwork'].front_default,
-      shiny: pokemon.sprites.other['official-artwork'].front_shiny
+      shiny: pokemon.sprites.other['official-artwork'].front_shiny,
     },
     id: pokemon.id,
-  }
+  };
 }
-
 
 export { formatPokemonData, formatPokemon };

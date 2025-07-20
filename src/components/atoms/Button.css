@@ -5,33 +5,35 @@
   font-size: 1rem;
   text-transform: capitalize;
   font-weight: 700;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .primary {
-  background-color: #EA5D60;
+  background-color: #ea5d60;
   color: white;
 }
 
 .primary:hover {
-  background-color: #D44C4F;
+  background-color: #d44c4f;
 }
 
 .secondary {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   color: #747476;
 }
 
 .secondary:hover {
-  background-color: #E0E0E0;
+  background-color: #e0e0e0;
 }
 
 .disabled {
-  background-color: #E0E0E0;
-  color: #B0B0B0;
+  background-color: #e0e0e0;
+  color: #b0b0b0;
   cursor: not-allowed;
 }
 
 .disabled:hover {
-  background-color: #E0E0E0;
+  background-color: #e0e0e0;
 }

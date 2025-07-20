@@ -7,7 +7,6 @@
   position: relative;
 }
 
-
 .card-info {
   padding: 30px;
   display: flex;
@@ -24,7 +23,7 @@
   flex-basis: 65px;
 }
 
-.card-image>img {
+.card-image > img {
   transform: scale(3);
 }
 

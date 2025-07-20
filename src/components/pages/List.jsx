@@ -1,6 +1,6 @@
-import { usePokemon } from "../../hooks/usePokemon";
-import Search from "../molecules/Search";
-import PokemonList from "../organisms/PokemonList";
+import { usePokemon } from '../../hooks/usePokemon';
+import Search from '../molecules/Search';
+import PokemonList from '../organisms/PokemonList';
 
 export default function List() {
   const {
@@ -12,7 +12,7 @@ export default function List() {
     updateLimits,
     maxAvailable,
     resetLimits,
-    filterPokemons
+    filterPokemons,
   } = usePokemon();
 
   return (

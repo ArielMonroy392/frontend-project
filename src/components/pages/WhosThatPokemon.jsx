@@ -1,15 +1,15 @@
-import useGame from "../../hooks/useGame";
-import Button from "../atoms/Button";
-import Game from "../organisms/Game";
-import LanguageSelection from "../organisms/LanguageSelection";
-import Text from "../atoms/Text";
-import { MAX_TRIES } from "../../constants/game";
-import Icon from "../atoms/Icon";
-import "./WhosThatPokemon.css";
+import useGame from '../../hooks/useGame';
+import Button from '../atoms/Button';
+import Game from '../organisms/Game';
+import LanguageSelection from '../organisms/LanguageSelection';
+import Text from '../atoms/Text';
+import { MAX_TRIES } from '../../constants/game';
+import Icon from '../atoms/Icon';
+import './WhosThatPokemon.css';
 
 export default function WhosThatPokemon() {
-
-  const { isLoading,
+  const {
+    isLoading,
     randomPoke,
     hiddenPoke,
     isFinished,
@@ -19,7 +19,7 @@ export default function WhosThatPokemon() {
     onNextTry,
     tries,
     score,
-    resetGame
+    resetGame,
   } = useGame();
   return (
     <div className="whos-that-pokemon">
@@ -34,16 +34,15 @@ export default function WhosThatPokemon() {
         tries={tries}
         onNextTry={onNextTry}
       />
-      {
-        tries === MAX_TRIES &&
+      {tries === MAX_TRIES && (
         <div className="game-over">
-          <Text className="text-xl">Your score: {" "} {score}</Text>
+          <Text className="text-xl">Your score: {score}</Text>
           <Button onClick={resetGame}>
             Restart
             <Icon icon="replay" size={24} />
           </Button>
         </div>
-      }
+      )}
     </div>
-  )
+  );
 }
