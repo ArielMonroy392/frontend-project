@@ -39,3 +39,13 @@ export async function fetchPokemonSpecies(id) {
   }
   return species.data;
 }
+
+export async function fetchType(type) {
+  const response = await pokeAxios.get(`type/${type}`);
+
+  if (!response.data) {
+    throw new Error(`Type ${type} not found`);
+  }
+
+  return response.data;
+}
