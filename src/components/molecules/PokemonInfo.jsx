@@ -7,9 +7,25 @@ import Button from '../atoms/Button.jsx';
 import Icon from '../atoms/Icon.jsx';
 import PokemonStats from './PokemonStats.jsx';
 import PokemonData from './PokemonData.jsx';
+import TabPanel from '../templates/TabPanel.jsx';
+import { useMemo } from 'react';
 
 export default function PokemonInfo({ pokemon }) {
   const navigate = useNavigate();
+
+  const tabs = useMemo(() => [
+    {
+      name: 'Stats',
+      component: PokemonStats,
+      props: { pokemon },
+    },
+    {
+      name: 'Data',
+      component: PokemonData,
+      props: { pokemon },
+    },
+  ], [pokemon]);
+
   return (
     <div className="pokemon-info">
       <Button onClick={() => navigate(-1)} variant='secondary'>
@@ -33,8 +49,7 @@ export default function PokemonInfo({ pokemon }) {
         ))}
       </ul>
 
-      <PokemonStats pokemon={pokemon} />
-      <PokemonData pokemon={pokemon} />
+      <TabPanel tabs={tabs} />
     </div>
   );
 }
