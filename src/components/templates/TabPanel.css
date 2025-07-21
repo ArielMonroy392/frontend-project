@@ -1,0 +1,42 @@
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.tab-button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  color: #333;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+
+.tab-button.active {
+  border-bottom: 2px solid #4a90da;
+  color: #4a90da;
+}
+
+.tab-content {
+  animation: fadeSlide 0.3s ease;
+}
+
+.tab-panel-animation {
+  animation: fadeSlide 0.3s ease;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
