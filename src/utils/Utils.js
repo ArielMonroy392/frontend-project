@@ -1,44 +1,65 @@
 function formatPokemonData(pokemon, species) {
   const englishFlavor = species.flavor_text_entries.find(
-    (entry) => entry.language.name === 'en'
+    entry => entry.language.name === 'en'
   );
 
   return {
     name: pokemon.name,
     id: species.id,
-    species: species.genera.find((g) => g.language.name === 'en')?.genus,
+    species: species.genera.find(g => g.language.name === 'en')?.genus,
     height: pokemon.height,
     weight: pokemon.weight,
-    abilities: pokemon.abilities.map((a) => ({
+    abilities: pokemon.abilities.map(a => ({
       name: a.ability.name,
       hidden: a.is_hidden,
     })),
-    stats: pokemon.stats.map((s) => ({
+    stats: pokemon.stats.map(s => ({
       name: s.stat.name,
       base: s.base_stat,
       effort: s.effort,
     })),
-    types: pokemon.types.map((t) => t.type.name),
+    types: pokemon.types.map(t => t.type.name),
     sprites: {
       official: pokemon.sprites.other['official-artwork'].front_default,
       shiny: pokemon.sprites.other['official-artwork'].front_shiny,
     },
     evolution_chain_url: species.evolution_chain.url,
     flavor_text: englishFlavor?.flavor_text?.replace(/\f|\n/g, ' ').trim(),
+    generation: generationNameToNumber(species.generation.name),
   };
 }
 
-function formatPokemon (pokemon ) {
+function formatPokemon(pokemon) {
   return {
     name: pokemon.name,
-    types: pokemon.types.map((t) => t.type.name),
+    types: pokemon.types.map(t => t.type.name),
     sprites: {
       official: pokemon.sprites.other['official-artwork'].front_default,
-      shiny: pokemon.sprites.other['official-artwork'].front_shiny
+      shiny: pokemon.sprites.other['official-artwork'].front_shiny,
     },
     id: pokemon.id,
-  }
+  };
 }
 
-
 export { formatPokemonData, formatPokemon };
+
+function generationNameToNumber(name) {
+  console.log(name);
+  const romanMap = {
+    i: 1,
+    ii: 2,
+    iii: 3,
+    iv: 4,
+    v: 5,
+    vi: 6,
+    vii: 7,
+    viii: 8,
+    ix: 9,
+  };
+
+  const match = name.match(/^generation-(i{1,3}|iv|v|vi{0,3}|ix)$/);
+  if (!match) return null;
+
+  const roman = match[1];
+  return romanMap[roman] || null;
+}

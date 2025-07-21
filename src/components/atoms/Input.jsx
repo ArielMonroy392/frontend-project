@@ -1,30 +1,30 @@
-import Icon from "./Icon"
-import "./Input.css"
+import Icon from './Icon';
+import './Input.css';
 
 export default function Input({
-  type = "text",
-  placeholder = "",
+  type = 'text',
+  placeholder = '',
   value,
-  onChange = () => { },
-  className = "",
+  onChange = () => {},
+  className = '',
   icon,
   ...rest
 }) {
   return (
-
     <div className="input-container">
-      {
-        icon && <div className="input-icon">
+      {icon && (
+        <div className="input-icon">
           <Icon icon={icon} color={'gray'} size={24} />
         </div>
-      }
-      <input type={type}
+      )}
+      <input
+        type={type}
         placeholder={placeholder}
         onChange={onChange}
         value={value}
-        className={`${className} input ${icon ? "input-with-icon" : ""}`}
+        className={`${className} input ${icon ? 'input-with-icon' : ''}`}
         {...rest}
       />
     </div>
-  )
+  );
 }

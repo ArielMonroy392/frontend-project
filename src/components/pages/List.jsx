@@ -1,7 +1,7 @@
 import { usePokemon } from "../../hooks/usePokemon";
 import Search from "../molecules/Search";
 import PokemonList from "../organisms/PokemonList";
-import {useLoaderData} from "react-router";
+import { useLoaderData } from "react-router";
 
 export default function List() {
   const { initialData } = useLoaderData();
@@ -15,7 +15,7 @@ export default function List() {
     maxAvailable,
     resetLimits,
     filterPokemons
-  } = usePokemon({initialData});
+  } = usePokemon({ initialData });
   return (
     <>
       <Search searchValue={searchValue} onChangeSearch={filterPokemons} />

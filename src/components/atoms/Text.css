@@ -17,6 +17,11 @@
 .text-xxl {
   font-size: 2rem; /* 32px */
 }
+
+.text-mamouth {
+  font-size: 6rem; /* 96px */
+}
+
 .capitalize {
   text-transform: capitalize;
 }
@@ -31,4 +36,12 @@
 
 .text-white {
   color: white;
+}
+
+.text-black {
+  color: black;
+}
+
+.text-gray {
+  color: #747476;
 }

@@ -1,12 +1,10 @@
-
-import './App.css'
-import Layout from './components/templates/Layout'
-import List from './components/templates/List'
-import { Route, Routes } from 'react-router'
-import WhosThatPokemon from './components/templates/WhosThatPokemon'
+import './App.css';
+import Layout from './components/templates/Layout';
+import List from './components/templates/List';
+import { Route, Routes } from 'react-router';
+import WhosThatPokemon from './components/templates/WhosThatPokemon';
 
 function App() {
-
   return (
     // <Routes>
     //   <Route element={<Layout />}>
@@ -15,7 +13,7 @@ function App() {
     //   </Route>
     // </Routes>
     <></>
-  )
+  );
 }
 
-export default App
+export default App;

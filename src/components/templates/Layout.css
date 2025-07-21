@@ -1,8 +1,8 @@
 .layout {
   display: grid;
   grid-template-areas:
-    "header"
-    "main";
+    'header'
+    'main';
   grid-template-rows: 4rem 100%;
 }
 

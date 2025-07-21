@@ -1,5 +1,5 @@
-import pokeAxios from "./Axios";
-import {formatPokemon} from "../utils/Utils.js";
+import pokeAxios from './Axios';
+import { formatPokemon } from '../utils/Utils.js';
 
 export async function fetchPokemons({ offset = 0, limit = 25 }) {
   const response = await pokeAxios.get("pokemon", {
@@ -7,17 +7,19 @@ export async function fetchPokemons({ offset = 0, limit = 25 }) {
   });
 
   if (!response.data || !response.data.results) {
-    throw new Error("Failed to fetch pokemons");
+    throw new Error('Failed to fetch pokemons');
   }
 
   const pokemonDetails = await Promise.all(
-    response.data.results.map(async (pokemon) => {
+    response.data.results.map(async pokemon => {
       const res = await pokeAxios.get(pokemon.url);
       return res.data;
     })
   );
 
-  return pokemonDetails.map((pokemon) => { return formatPokemon(pokemon); });
+  return pokemonDetails.map(pokemon => {
+    return formatPokemon(pokemon);
+  });
 }
 
 export async function fetchPokemonById(id) {
