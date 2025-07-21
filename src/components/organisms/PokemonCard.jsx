@@ -5,7 +5,7 @@ import TypeBadge from "../molecules/TypeBadge";
 import "./PokemonCard.css";
 
 const PokemonCard = ({ pokemon }) => {
-  console.log(pokemon);
+
   return (
     <Link to={`/pokemon/${pokemon.id}`}>
       <article className={`card bg-${pokemon.types[0]}`}>
