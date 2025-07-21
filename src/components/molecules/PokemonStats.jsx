@@ -4,13 +4,13 @@ export default function PokemonStats({ pokemon }) {
   return (
     <div className="pokemon-stats">
       <h2>Base Stats</h2>
-      {/*<ul>*/}
-      {/*  {pokemon.stats.map((stat) => (*/}
-      {/*    <li key={stat.stat.name}>*/}
-      {/*      {stat.stat.name}: {stat.base_stat}*/}
-      {/*    </li>*/}
-      {/*  ))}*/}
-      {/*</ul>*/}
+      <ul>
+        {pokemon.stats.map((stat) => (
+          <li key={stat.name}>
+            {stat.name}: {stat.base}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
