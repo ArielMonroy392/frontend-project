@@ -1,0 +1,25 @@
+.pokemon-stats {
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  gap: 0.5rem;
+}
+
+.pokemon-stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pokemon-stats-list li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid #eaeaea;
+  flex: 0 1 auto;
+}
