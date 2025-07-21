@@ -1,3 +1,5 @@
+import { fetchType } from "../services/PokemonServices";
+
 function formatPokemonData(pokemon, species) {
   const englishFlavor = species.flavor_text_entries.find(
     entry => entry.language.name === 'en'
@@ -41,7 +43,6 @@ function formatPokemon(pokemon) {
   };
 }
 
-export { formatPokemonData, formatPokemon };
 
 function generationNameToNumber(name) {
   console.log(name);
@@ -63,3 +64,37 @@ function generationNameToNumber(name) {
   const roman = match[1];
   return romanMap[roman] || null;
 }
+
+async function getSuperEffectiveTypes(pokemonTypes) {
+  const typeDataList = await Promise.all(
+    pokemonTypes.map(type =>
+      fetchType(type)
+    )
+  );
+
+  const typeEffectiveness = {};
+
+  for (const typeData of typeDataList) {
+    typeData.damage_relations.double_damage_from.forEach(t => {
+      typeEffectiveness[t.name] = (typeEffectiveness[t.name] || 1) * 2;
+    });
+
+    typeData.damage_relations.half_damage_from.forEach(t => {
+      typeEffectiveness[t.name] = (typeEffectiveness[t.name] || 1) * 0.5;
+    });
+
+    typeData.damage_relations.no_damage_from.forEach(t => {
+      typeEffectiveness[t.name] = 0;
+    });
+  }
+
+  const superEffective = Object.entries(typeEffectiveness)
+    .filter(([, multiplier]) => multiplier > 1)
+    .map(([type]) => type);
+
+  return superEffective;
+}
+
+
+
+export { formatPokemonData, formatPokemon, getSuperEffectiveTypes };
