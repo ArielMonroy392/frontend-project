@@ -1,0 +1,15 @@
+.pokemon-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.type_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.type_list li {
+  list-style: none;
+  flex: 0 1 auto;
+}
