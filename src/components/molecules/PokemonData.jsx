@@ -5,7 +5,7 @@ import "./PokemonData.css";
 export default function PokemonData({ pokemon }) {
   return (
     <div className="pokemon-data">
-      <Text className={"text-black capitalize font-bold"}> About this pokemon</Text>
+      <Text className={`text-${pokemon.types[0]} capitalize font-bold`}> About this pokemon</Text>
       <p>{pokemon.flavor_text}</p>
       <ul className="pokemon-data-list">
         <li>
