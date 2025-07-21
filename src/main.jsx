@@ -4,6 +4,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router';
 import Layout from './components/templates/Layout.jsx';
 import WhosThatPokemon from './components/pages/WhosThatPokemon.jsx';
 import List from './components/pages/List.jsx';
+import { Toaster } from 'sonner';
+import PokemonInfo from './components/pages/PokemonInfo.jsx';
+import { fetchPokemons } from "./services/PokemonServices.js";
 
 const router = createBrowserRouter([
   {
@@ -25,10 +28,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-import { Toaster } from 'sonner';
-import PokemonInfo from './components/pages/PokemonInfo.jsx';
-import PokemonLoader from "./loader/PokemonLoader.js";
-import { fetchPokemons } from "./services/PokemonServices.js";
+
 
 createRoot(document.getElementById('root')).render(
   <>
