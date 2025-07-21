@@ -35,6 +35,7 @@ export const usePokemon = ({ initialData }) => {
     } finally {
       setLoading(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offset]);
 
   const filterPokemons = useCallback(
