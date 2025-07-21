@@ -1,7 +1,7 @@
 import pokeAxios from "./Axios";
 import {formatPokemon} from "../utils/Utils.js";
 
-export async function fetchPokemons({ offset, limit }) {
+export async function fetchPokemons({ offset = 0, limit = 25 }) {
   const response = await pokeAxios.get("pokemon", {
     params: { offset, limit },
   });

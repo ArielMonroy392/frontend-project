@@ -11,14 +11,24 @@ const router = createBrowserRouter([
     Component: Layout,
     children: [
       { index: true, Component: WhosThatPokemon },
-      { path: "list", Component: List },
-      { path: "pokemon/:id", Component: PokemonInfo },
+      { path: "list",
+        Component: List,
+        loader: async () =>
+        {
+          return {
+            initialData: await fetchPokemons({offset: 0, limit: 25})
+          }
+          },
+      },
+      { path: "pokemon/:id", Component: PokemonInfo }
     ],
   },
 ]);
 
 import { Toaster } from "sonner";
 import PokemonInfo from "./components/pages/PokemonInfo.jsx";
+import PokemonLoader from "./loader/PokemonLoader.js";
+import {fetchPokemons} from "./services/PokemonServices.js";
 
 createRoot(document.getElementById("root")).render(
   <>

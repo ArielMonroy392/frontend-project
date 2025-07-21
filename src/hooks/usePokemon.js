@@ -4,31 +4,35 @@ import { fetchPokemons as fetchPokemonsService } from "../services/PokemonServic
 
 const limit = 25;
 
-export const usePokemon = () => {
-  const [pokemons, setPokemons] = useState([]);
+export const usePokemon = ({ initialData }) => {
+  const [pokemons, setPokemons] = useState(initialData ?? []);
   const [filteredPokemons, setFilteredPokemons] = useState([]);
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
   const [searchValue, setSearchValue] = useState('');
   const [limits, setLimits] = useState([1, 0]);
-
+  const [hasinitialData, setHasInitialData] = useState(!!initialData && initialData.length > 0);
 
   const fetchPokemons = useCallback(async () => {
     setLoading(true);
     try {
-      const pokemonDetails = await fetchPokemonsService({offset, limits});
-      setPokemons(prev =>
-        offset === 0 ? pokemonDetails : [...prev, ...pokemonDetails]
-      );
-      setLimits(prev => [1, prev[1] + pokemonDetails.length]);
-      setFilteredPokemons(prev =>
-        offset === 0 ? pokemonDetails : [...prev, ...pokemonDetails]
-      );
-      console.log(pokemonDetails);
+      if (!hasinitialData) {
+        const pokemonDetails = await fetchPokemonsService({offset, limits});
+        setPokemons(prev =>
+            offset === 0 ? pokemonDetails : [...prev, ...pokemonDetails]
+        );
+        setLimits(prev => [1, prev[1] + pokemonDetails.length]);
+        setFilteredPokemons(prev =>
+            offset === 0 ? pokemonDetails : [...prev, ...pokemonDetails]
+        );
+      } else {
+        setFilteredPokemons(pokemons);
+        setLimits([1, pokemons.length]);
+        setHasInitialData(false);
+      }
     } catch (error) {
       console.error("Failed to fetch pokemons:", error);
     } finally {
-      console.log("Pokemons fetched:");
       setLoading(false);
     }
   }, [offset]);
@@ -50,6 +54,7 @@ export const usePokemon = () => {
 
 
   const fetchMore = useCallback(() => {
+    console.log("Fetching more pokemons...");
     if (loading || searchValue || limits[0] !== 1 || limits[1] !== pokemons.length) {
       return;
     }
