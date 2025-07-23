@@ -1,30 +1,20 @@
 import { useParams } from 'react-router';
-import PokemonTitle from '../molecules/PokemonTitle';
 import usePokemonInfo from '../../hooks/usePokemonInfo';
 import PokemonLoader from '../atoms/PokeballLoader';
-import PokemonStats from '../molecules/PokemonStats.jsx';
-import TabPanel from '../templates/TabPanel.jsx';
-import TypeBadge from '../molecules/TypeBadge.jsx';
 import PokemonInfo from '../molecules/PokemonInfo.jsx';
+import { useNavigate } from 'react-router';
+import Button from "../atoms/Button.jsx";
+import Icon from '../atoms/Icon.jsx';
 
 export default function PokemonInfoPage() {
   const params = useParams();
   const { pokemon, loading, error } = usePokemonInfo({ id: params.id });
-  const tabs = [
-    {
-      name: 'Stats',
-      component: props => <PokemonStats {...props} />,
-      props: { pokemon },
-    },
-    {
-      name: 'Title',
-      component: props => <PokemonTitle {...props} />,
-      props: { pokemon },
-    },
-  ];
+  const navigate = useNavigate();
   return (
     <div className="pokemon-info">
-      <h1>Pokemon Information</h1>
+      <Button onClick={() => navigate(-1)} variant='secondary'>
+        <Icon icon={'chevron_right'} size={24} />
+      </Button>
       {loading && <PokemonLoader />}
       {error && <p className="error">Error: {error}</p>}
       {pokemon && (
