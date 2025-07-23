@@ -3,6 +3,7 @@
   flex-direction: column;
 }
 
+
 .type_list {
   display: flex;
   flex-wrap: wrap;
@@ -12,4 +13,32 @@
 .type_list li {
   list-style: none;
   flex: 0 1 auto;
+}
+
+.info-container {
+  display: flex;
+  justify-content: center;
+}
+
+.info-container>div {
+  flex: 0.4 1 5rem;
+}
+
+.pokemon-image {
+  position: relative;
+}
+
+
+.dots {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 40%;
+}
+
+.pokeball {
+  position: absolute;
+  left: 1rem;
+  top: 20rem;
+  height: 20rem;
 }
