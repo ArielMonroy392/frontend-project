@@ -23,3 +23,7 @@
   border-bottom: 1px solid #eaeaea;
   flex: 0 1 auto;
 }
+
+.pokemon-stats-list>li>span:first-child {
+  flex: 0 1 8rem;
+}

@@ -11,10 +11,10 @@ export default function PokemonStats({ pokemon }) {
       </Text>
       <ul className="pokemon-stats-list">
         {pokemon.stats.map(stat => (
-          <li key={stat.name}>
+          <li key={stat.name} >
             <Text
               className={`text-black capitalize font-bold`}
-              style={{ width: '10rem' }}
+              style={{ width: '' }}
             >
               {stat.name}
             </Text>

@@ -36,7 +36,7 @@ function formatPokemonData(pokemon, species) {
     generation: generationNameToNumber(species.generation.name),
   };
 
-  pokemon.stats.push({
+  formatedPokemon.stats.push({
     name: 'total',
     base: total,
     max: 'MAX',
