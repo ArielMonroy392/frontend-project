@@ -1,0 +1,20 @@
+.dots {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 40%;
+}
+
+.pokeball {
+    position: absolute;
+    left: 1rem;
+    top: 20rem;
+    height: 20rem;
+}
+
+.dots-lg {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 40%;
+}
