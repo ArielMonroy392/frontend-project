@@ -3,8 +3,6 @@ import usePokemonInfo from '../../hooks/usePokemonInfo';
 import PokemonLoader from '../atoms/PokeballLoader';
 import PokemonInfo from '../molecules/PokemonInfo.jsx';
 import { useNavigate } from 'react-router';
-import Button from '../atoms/Button.jsx';
-import Icon from '../atoms/Icon.jsx';
 import { useCallback } from 'react';
 
 export default function PokemonInfoPage() {
