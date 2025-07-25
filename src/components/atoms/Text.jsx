@@ -1,7 +1,7 @@
 import './Text.css';
 
-const Text = ({ className, children }) => {
-  return <span className={className}>{children}</span>;
+const Text = ({ className, children, style }) => {
+  return <span className={className} style={style}>{children}</span>;
 };
 
 export default Text;
