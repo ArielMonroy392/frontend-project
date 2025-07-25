@@ -4,8 +4,8 @@ function formatPokemonData(pokemon, species) {
   const englishFlavor = species.flavor_text_entries.find(
     entry => entry.language.name === 'en'
   );
-
-  return {
+  let total = 0;
+  const formatedPokemon = {
     name: pokemon.name,
     id: species.id,
     species: species.genera.find(g => g.language.name === 'en')?.genus,
@@ -15,11 +15,17 @@ function formatPokemonData(pokemon, species) {
       name: a.ability.name,
       hidden: a.is_hidden,
     })),
-    stats: pokemon.stats.map(s => ({
-      name: s.stat.name,
-      base: s.base_stat,
-      effort: s.effort,
-    })),
+    stats: pokemon.stats.map(s => {
+      total += s.base_stat;
+      const stat = {
+        name: s.stat.name,
+        base: s.base_stat,
+        max: calculateStat({ base: s.base_stat, iv: 31, ev: 252, level: 100, natureBoost: 1.1, isHp: s.stat.name === "hp" }),
+        min: calculateStat({ base: s.base_stat, iv: 0, ev: 0, level: 100, natureBoost: 1.1, isHp: s.stat.name === "hp" })
+      }
+      return stat;
+    }
+    ),
     types: pokemon.types.map(t => t.type.name),
     sprites: {
       official: pokemon.sprites.other['official-artwork'].front_default,
@@ -29,6 +35,14 @@ function formatPokemonData(pokemon, species) {
     flavor_text: englishFlavor?.flavor_text?.replace(/\f|\n/g, ' ').trim(),
     generation: generationNameToNumber(species.generation.name),
   };
+
+  pokemon.stats.push({
+    name: 'total',
+    base: total,
+    max: 'MAX',
+    min: 'MIN'
+  })
+  return formatedPokemon
 }
 
 function formatPokemon(pokemon) {
@@ -98,3 +112,12 @@ async function getSuperEffectiveTypes(pokemonTypes) {
 
 
 export { formatPokemonData, formatPokemon, getSuperEffectiveTypes };
+
+function calculateStat({ base, iv = 31, ev = 0, level = 50, natureBoost = 1.0, isHp = false }) {
+  if (isHp) {
+    if (base === 1) return 1; // Pokémon como Shedinja
+    return Math.floor((((2 * base + iv + Math.floor(ev / 4)) * level) / 100) + level + 10);
+  } else {
+    return Math.floor(((((2 * base + iv + Math.floor(ev / 4)) * level) / 100) + 5) * natureBoost);
+  }
+}
