@@ -1,6 +1,7 @@
 .pokemon-info {
     display: flex;
     flex-direction: column;
+    width: 50vw;
 }
 
 .type_list {
@@ -16,18 +17,21 @@
 
 .info-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
-.info-container > div {
+.info-container>div {
     flex: 0.4 1 5rem;
 }
 
 .pokemon-image {
     position: relative;
     display: flex;
-    justify-content: center;
-    align-items: end;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+    width: 50vw;
+
 }
 
 .pokemon-image img {
