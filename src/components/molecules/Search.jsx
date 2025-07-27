@@ -16,7 +16,7 @@ export default function Search({ searchValue, onChangeSearch }) {
         placeholder="What Pokémon are you looking for?"
         className="boxShadow wFull"
       ></Input>
-      <Text className={'text-medium text-white'}>
+      <Text className={'textMedium textWhite'}>
         Search for Pokémon by name or using the National Pokédex number
       </Text>
     </div>
