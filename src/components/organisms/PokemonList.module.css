@@ -1,4 +1,4 @@
-.pokemon-list-container {
+.pokemonListContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,7 +6,7 @@
   padding: 2rem 8rem;
 }
 
-.pokemon-list {
+.pokemonList {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -17,11 +17,11 @@
   width: 100%;
 }
 
-li {
+.pokemonListItem{
   flex-basis: 375px;
 }
 
-.pokemon-list-range {
+.pokemonListRange {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,7 +31,7 @@ li {
   width: 100%;
 }
 
-.pokemon-list-range-form {
+.pokemonListRangeForm {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,11 +39,11 @@ li {
   width: 100%;
 }
 
-.pokemon-list-range-form > * > input {
+.pokemonListRangeForm > * > input {
   width: 100%;
 }
 
-.pokemon-list-range-actions {
+.pokemonListRangeActions {
   display: flex;
   justify-content: end;
   align-items: center;

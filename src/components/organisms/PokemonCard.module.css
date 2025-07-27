@@ -7,7 +7,7 @@
   position: relative;
 }
 
-.card-info {
+.cardInfo {
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -16,14 +16,14 @@
   flex-basis: 220px;
 }
 
-.card-image {
+.cardImage {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-basis: 65px;
 }
 
-.card-image > img {
+.cardImage > img {
   transform: scale(3);
 }
 
@@ -41,13 +41,13 @@
   height: 313px;
 }
 
-ul {
+.typeList {
   list-style: none;
   padding: 0;
   margin: 0;
   display: inline-flex;
 }
 
-li {
+.typeList > li {
   padding: 0;
 }

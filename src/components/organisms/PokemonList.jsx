@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import PokemonCard from './PokemonCard';
 import PokemonLoader from '../atoms/PokeballLoader';
-import './PokemonList.css';
+import styles from './PokemonList.module.css';
 import Button from '../atoms/Button';
 import Input from '../atoms/Input';
 import { toast } from 'sonner';
@@ -74,15 +74,18 @@ export default function PokemonList({
   };
 
   return (
-    <div className="pokemon-list-container">
-      <div className="pokemon-list-range">
+    <div className={styles.pokemonListContainer}>
+      <div className={styles.pokemonListRange}>
         <h2>Filter by Range</h2>
-        <form onSubmit={handleSetNewLimits} className="pokemon-list-range-form">
+        <form
+          onSubmit={handleSetNewLimits}
+          className={styles.pokemonListRangeForm}
+        >
           <Input ref={minLimitInput} id="min" type="number" placeholder="Min" />
           <Input ref={maxLimitInput} id="max" type="number" placeholder="Max" />
           <Button type="submit">Apply</Button>
         </form>
-        <div className="pokemon-list-range-actions">
+        <div className={styles.pokemonListRangeActions}>
           <Button variant="secondary" onClick={handleResetLimits}>
             Reset Filters
           </Button>
@@ -91,10 +94,10 @@ export default function PokemonList({
           Showing {pokemons.length} of {maxAvailable} Pokémon
         </p>
       </div>
-      <ul className="pokemon-list">
+      <ul className={styles.pokemonList}>
         {pokemons.length > 0 ? (
           pokemons.map(pokemon => (
-            <li key={pokemon.id} className="pokemon-list-item">
+            <li key={pokemon.id} className={styles.pokemonListItem}>
               <PokemonCard pokemon={pokemon} />
             </li>
           ))

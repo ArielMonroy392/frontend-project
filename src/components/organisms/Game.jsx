@@ -1,6 +1,6 @@
 import PokemonImage from '../atoms/PokemonImage';
 import Button from '../atoms/Button';
-import './Game.css';
+import styles from './Game.module.css';
 import PokemonLoader from '../atoms/PokeballLoader';
 import { MAX_TRIES } from '../../constants/game';
 import Icon from '../atoms/Icon';
@@ -17,16 +17,16 @@ export default function Game({
 }) {
   console.log(randomPoke);
   return (
-    <div className="game-container">
+    <div className={styles.gameContainer}>
       {isLoading ? (
         <PokemonLoader />
       ) : (
         <>
-          <div className="hidden-pokemon">
+          <div className={styles.hiddenPokemon}>
             {hiddenPoke && (
               <PokemonImage
-                className={`${isFinished ? '' : 'filter'}`}
                 src={hiddenPoke.sprites}
+                imgHidden={isFinished}
               ></PokemonImage>
             )}
           </div>
