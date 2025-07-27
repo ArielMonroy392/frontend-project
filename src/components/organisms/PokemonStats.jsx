@@ -7,14 +7,12 @@ export default function PokemonStats({ pokemon }) {
 
   return (
     <div className={styles.pokemonStats}>
-      <Text className={`text-${pokemon.types[0]} capitalize font-bold`}>
+      <Text className={`text-${pokemon.types[0]} capitalize fontBold`}>
         Base Stats
       </Text>
       <ul className={styles.pokemonStatsList}>
         {pokemon.stats.map(stat => (
-          <li key={stat.name}>
-            <StatItem stat={stat} />
-          </li>
+          <StatItem stat={stat} key={stat.name} />
         ))}
       </ul>
     </div>
