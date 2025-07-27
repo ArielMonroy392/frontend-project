@@ -1,20 +1,16 @@
 import Icon from '../atoms/Icon';
 import Text from '../atoms/Text';
-import './TypeBadge.css';
+import styles from './TypeBadge.module.css';
+import clsx from 'clsx';
 
-const TypeBadge = ({
-  type,
-  onlyIcon = false,
-  size = 15,
-  rounded = 'normal',
-}) => {
+const TypeBadge = ({ type, onlyIcon = false, size = 15, rounded }) => {
   return (
     <span
-      className={`badge ${rounded === 'normal' ? 'rounded' : 'rounded-large'} ${type}`}
+      className={clsx(styles.badge, rounded === 'large' && styles.roundedLarge)}
     >
-      <Icon icon={`${type}`} size={size} />
+      <Icon icon={type} size={size} />
       {!onlyIcon && (
-        <Text className="text-small capitalize font-medium">{type}</Text>
+        <Text className="textSmall capitalize fontMedium">{type}</Text>
       )}
     </span>
   );

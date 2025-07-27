@@ -1,6 +1,6 @@
 import Input from '../atoms/Input';
 import Text from '../atoms/Text';
-import './Search.css';
+import styles from './Search.module.css';
 
 export default function Search({ searchValue, onChangeSearch }) {
   const handleSearchChange = e => {
@@ -8,13 +8,13 @@ export default function Search({ searchValue, onChangeSearch }) {
   };
 
   return (
-    <div className="banner">
+    <div className={styles.banner}>
       <Input
         value={searchValue}
         onChange={handleSearchChange}
         icon="search"
         placeholder="What Pokémon are you looking for?"
-        className="box-shadow w-full"
+        className="boxShadow wFull"
       ></Input>
       <Text className={'text-medium text-white'}>
         Search for Pokémon by name or using the National Pokédex number

@@ -8,12 +8,9 @@
   max-width: 8rem;
   gap: 0.5rem;
   min-width: fit-content;
-}
-
-.rounded {
   border-radius: 0.25rem;
 }
 
-.rounded-large {
+.roundedLarge {
   border-radius: 3rem;
 }

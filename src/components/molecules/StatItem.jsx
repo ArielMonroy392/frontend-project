@@ -1,4 +1,5 @@
 import styles from './StatItem.module.css';
+import Text from '../atoms/Text.jsx';
 
 export default function StatItem({ stat }) {
   return (

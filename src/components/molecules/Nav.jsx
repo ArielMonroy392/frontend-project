@@ -1,15 +1,15 @@
-import './Nav.css';
+import styles from './Nav.module.css';
 import Text from '../atoms/Text';
 import LinkNav from './LinkNav';
 
 export default function Nav() {
   return (
-    <nav className="nav">
-      <div className="nav-brand">
-        <img src="/pokeball.svg"></img>
-        <Text className="nav-title">Pokédex</Text>
+    <nav className={`${styles.nav}`}>
+      <div className={`${styles.navBrand}`}>
+        <img src="/pokeball.svg" alt="pokeball brand"></img>
+        <Text className={`${styles.navTitle}`}>Pokédex</Text>
       </div>
-      <ul className="nav-links">
+      <ul className={`${styles.navLinks}`}>
         <li>
           <LinkNav to={'/'}>Home </LinkNav>
         </li>

@@ -1,9 +1,9 @@
 import Text from '../atoms/Text';
-import './PokemonTitle.css';
+import styles from './PokemonIdentity.module.css';
 
-const PokemonTitle = ({ pokemon, size = 'normal', color = 'white' }) => {
+const PokemonIdentity = ({ pokemon, size = 'normal', color = 'white' }) => {
   return (
-    <div className="pokemon-info">
+    <div className={styles.pokemonIdentity}>
       <Text
         className={`${size === 'normal' ? 'text-large' : 'text-xxl'} ${color === 'white' ? `text-white` : 'text-black'} font-bold`}
       >
@@ -18,4 +18,4 @@ const PokemonTitle = ({ pokemon, size = 'normal', color = 'white' }) => {
   );
 };
 
-export default PokemonTitle;
+export default PokemonIdentity;

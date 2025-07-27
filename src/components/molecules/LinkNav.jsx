@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router';
-import './LinkNav.css';
+import styles from './LinkNav.module.css';
 
 export default function LinkNav({ to, children }) {
   return (
     <NavLink
       to={to}
-      className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+      className={`${styles.linkNav} ${({ isActive }) => (isActive ? styles.active : '')}`}
     >
       {children}
     </NavLink>
