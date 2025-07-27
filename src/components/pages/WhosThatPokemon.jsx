@@ -1,7 +1,7 @@
 import useGame from '../../hooks/useGame';
 import Button from '../atoms/Button';
 import Game from '../organisms/Game';
-import LanguageSelection from '../organisms/LanguageSelection';
+import LanguageSelection from '../molecules/LanguageSelection.jsx';
 import Text from '../atoms/Text';
 import { MAX_TRIES } from '../../constants/game';
 import Icon from '../atoms/Icon';
