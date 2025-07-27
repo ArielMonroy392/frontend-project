@@ -13,7 +13,7 @@
 }
 
 .primary {
-  background-color: #ea5d60;
+  background-color: var(--primary);
   color: white;
 }
 
