@@ -1,11 +1,11 @@
-import './Icon.css';
+import styles from './Icon.module.css';
 
 const Icon = ({ icon, color, size = 15 }) => {
   return (
     <img
       src={`/icons/${icon}.svg`}
       alt={`${icon}`}
-      className="icon"
+      className={`${styles.icon}}`}
       style={{ color, width: size, height: size }}
     />
   );

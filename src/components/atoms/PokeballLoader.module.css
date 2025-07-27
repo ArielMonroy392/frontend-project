@@ -1,4 +1,4 @@
-.pokeball-loader {
+.pokeballLoader {
   width: 60px;
   height: 60px;
   background-color: #fff;
@@ -9,7 +9,7 @@
   animation: frames 0.8s linear 0s infinite;
 }
 
-.pokeball-loader:after {
+.pokeballLoader:after {
   content: '';
   position: absolute;
   width: 60px;
@@ -19,7 +19,7 @@
   top: -4px;
 }
 
-.pokeball-loader:before {
+.pokeballLoader:before {
   content: '';
   position: absolute;
   background-color: #fff;

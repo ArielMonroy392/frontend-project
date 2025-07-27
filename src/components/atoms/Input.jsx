@@ -1,5 +1,5 @@
 import Icon from './Icon';
-import './Input.css';
+import styles from './Input.module.css';
 
 export default function Input({
   type = 'text',
@@ -11,9 +11,9 @@ export default function Input({
   ...rest
 }) {
   return (
-    <div className="input-container">
+    <div className={`${styles.inputContainer} ${className}`}>
       {icon && (
-        <div className="input-icon">
+        <div className={styles.inputContainer}>
           <Icon icon={icon} color={'gray'} size={24} />
         </div>
       )}
@@ -22,7 +22,7 @@ export default function Input({
         placeholder={placeholder}
         onChange={onChange}
         value={value}
-        className={`${className} input ${icon ? 'input-with-icon' : ''}`}
+        className={`${styles.input} ${icon ? styles.inputWithIcon : ''}`}
         {...rest}
       />
     </div>

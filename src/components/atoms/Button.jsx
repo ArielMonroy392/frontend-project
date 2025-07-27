@@ -1,4 +1,4 @@
-import './Button.css';
+import styles from './Button.module.css';
 
 export default function Button({
   children,
@@ -10,7 +10,7 @@ export default function Button({
 }) {
   return (
     <button
-      className={`button ${variant} ${className || ''} ${disabled ? 'disabled' : ''}`}
+      className={`${styles.button} ${styles[variant]} ${className || ''}`}
       onClick={onClick}
       disabled={disabled}
       type={type}
