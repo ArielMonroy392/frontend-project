@@ -61,6 +61,8 @@ body {
   --bg-dragon: #7383b9;
   --bg-dark: #6f6e78;
   --bg-bug: #8bd674;
+
+--primary: #ea5d60;
 }
 
 .water {
@@ -205,77 +207,4 @@ body {
 
 .bg-bug {
   background-color: var(--bg-bug);
-}
-
-
-.text-water {
-  color: var(--color-water);
-}
-
-.text-dark {
-  color: var(--color-dark);
-}
-
-.text-steel {
-  color: var(--color-steel);
-}
-
-.text-rock {
-  color: var(--color-rock);
-}
-
-.text-psychic {
-  color: var(--color-psychic);
-}
-
-.text-poison {
-  color: var(--color-poison);
-}
-
-.text-normal {
-  color: var(--color-normal);
-}
-
-.text-ice {
-  color: var(--color-ice);
-}
-
-.text-ground {
-  color: var(--color-ground);
-}
-
-.text-grass {
-  color: var(--color-grass);
-}
-
-.text-ghost {
-  color: var(--color-ghost);
-}
-
-.text-flying {
-  color: var(--color-flying);
-}
-
-.text-fire {
-  color: var(--color-fire);
-}
-
-.text-fighting {
-  color: var(--color-fighting);
-}
-
-.text-fairy {
-  color: var(--color-fairy);
-}
-
-.text-electric {
-  color: var(--color-electric);
-}
-
-.text-dragon {
-  color: var(--color-dragon);
-}
-
-.text-bug {
-  color: var(--color-bug);
 }
