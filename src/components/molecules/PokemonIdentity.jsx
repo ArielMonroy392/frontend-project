@@ -5,12 +5,12 @@ const PokemonIdentity = ({ pokemon, size = 'normal', color = 'white' }) => {
   return (
     <div className={styles.pokemonIdentity}>
       <Text
-        className={`${size === 'normal' ? 'text-large' : 'text-xxl'} ${color === 'white' ? `text-white` : 'text-black'} font-bold`}
+        className={`${size === 'normal' ? 'textLarge' : 'textXxl'} ${color === 'white' ? `textWhite` : 'textBlack'} fontBold`}
       >
         #{pokemon.id.toString().padStart(3, '0')}
       </Text>
       <Text
-        className={`capitalize font-bold ${size === 'normal' ? 'text-xxl' : 'text-mamouth'} ${color === 'white' ? 'text-white' : 'text-black'}`}
+        className={`capitalize fontBold ${size === 'normal' ? 'textXxl' : 'textMamouth'} ${color === 'white' ? 'textWhite' : 'textBlack'}`}
       >
         {pokemon.name}
       </Text>
