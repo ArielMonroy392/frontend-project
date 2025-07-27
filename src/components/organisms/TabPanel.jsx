@@ -13,7 +13,11 @@ export default function TabPanel({ tabs }) {
     <div>
       <div className={styles.tabs}>
         {tabs.map(({ name }) => (
-          <TabButton name={name} onClick={() => setActiveTab(name)} />
+          <TabButton
+            key={name}
+            name={name}
+            onClick={() => setActiveTab(name)}
+          />
         ))}
       </div>
 

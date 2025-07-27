@@ -5,11 +5,11 @@
     gap: 1rem;
 }
 
-.tab-content {
+.tabContent {
     animation: fadeSlide 0.3s ease;
 }
 
-.tab-panel-animation {
+.tabPanelAnimation {
     animation: fadeSlide 0.3s ease;
 }
 
