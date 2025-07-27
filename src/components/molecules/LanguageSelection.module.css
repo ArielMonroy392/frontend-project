@@ -5,3 +5,9 @@
   align-items: center;
   gap: 1rem;
 }
+
+.languageList {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+}
