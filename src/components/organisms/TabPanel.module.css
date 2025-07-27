@@ -1,0 +1,26 @@
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.tab-content {
+    animation: fadeSlide 0.3s ease;
+}
+
+.tab-panel-animation {
+    animation: fadeSlide 0.3s ease;
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

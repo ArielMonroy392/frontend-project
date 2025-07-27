@@ -1,5 +1,5 @@
 import Text from "../atoms/Text";
-import TypeBadge from "./TypeBadge";
+import TypeBadge from "../molecules/TypeBadge";
 import "./PokemonData.css";
 
 export default function PokemonData({ pokemon }) {

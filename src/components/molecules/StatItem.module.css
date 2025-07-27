@@ -1,0 +1,12 @@
+.stat-item {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid #eaeaea;
+  flex: 0 1 auto;
+}
+
+.title {
+  flex: 0 1 8rem;
+}

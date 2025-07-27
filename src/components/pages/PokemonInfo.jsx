@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router';
 import { useCallback } from 'react';
 import "./PokemonInfo.css"
 import { useMemo } from 'react';
-import PokemonStats from '../molecules/PokemonStats.jsx';
-import PokemonData from '../molecules/PokemonData.jsx';
+import PokemonStats from '../organisms/PokemonStats.jsx';
+import PokemonData from '../organisms/PokemonData.jsx';
 import './PokemonInfo.css';
 import Button from '../atoms/Button.jsx';
 import Icon from '../atoms/Icon';

@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
-import './TabPanel.css';
+import styles from './TabPanel.module.css';
+import TabButton from '../atoms/TabButton.jsx';
 
 export default function TabPanel({ tabs }) {
   const [activeTab, setActiveTab] = useState(tabs[0]?.name);
@@ -10,19 +11,16 @@ export default function TabPanel({ tabs }) {
 
   return (
     <div>
-      <div className="tabs">
+      <div className={styles.tabs}>
         {tabs.map(({ name }) => (
-          <button
-            key={name}
-            className={`tab-button ${activeTab === name ? 'active' : ''}`}
-            onClick={() => setActiveTab(name)}
-          >
-            {name}
-          </button>
+          <TabButton name={name} onClick={() => setActiveTab(name)} />
         ))}
       </div>
 
-      <div key={activeTab} className="tab-content tab-panel-animation">
+      <div
+        key={activeTab}
+        className={`${styles.tabContent} ${styles.tabPanelAnimation}`}
+      >
         {ActiveTab?.component(ActiveTab.props || {})}
       </div>
     </div>
