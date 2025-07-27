@@ -10,3 +10,7 @@
 .title {
   flex: 0 1 8rem;
 }
+
+.bar {
+  width: 100%;
+}
