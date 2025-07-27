@@ -25,9 +25,3 @@
   display: flex;
   gap: 20px;
 }
-
-.navLinks a{
-  text-decoration: none;
-  color: #000;
-  font-weight: 500;
-}

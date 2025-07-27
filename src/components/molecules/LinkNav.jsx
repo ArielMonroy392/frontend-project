@@ -5,7 +5,9 @@ export default function LinkNav({ to, children }) {
   return (
     <NavLink
       to={to}
-      className={`${styles.linkNav} ${({ isActive }) => (isActive ? styles.active : '')}`}
+      className={({ isActive }) =>
+        `${isActive ? styles.navLinkActive : styles.navLink}`
+      }
     >
       {children}
     </NavLink>
