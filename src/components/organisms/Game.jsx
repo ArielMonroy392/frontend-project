@@ -26,12 +26,12 @@ export default function Game({
             {hiddenPoke && (
               <PokemonImage
                 src={hiddenPoke.sprites}
-                imgHidden={isFinished}
+                imgHidden={!isFinished}
               ></PokemonImage>
             )}
           </div>
           {
-            <ul className="button-list">
+            <ul className={`${styles.buttonList}`}>
               {randomPoke.map(pokemon => (
                 <li key={pokemon.id}>
                   <Button
