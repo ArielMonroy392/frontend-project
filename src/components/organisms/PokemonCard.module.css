@@ -51,3 +51,8 @@
 .typeList > li {
   padding: 0;
 }
+
+.link {
+    text-decoration: none;
+    color: inherit;
+}

@@ -6,7 +6,7 @@ import styles from './PokemonCard.module.css';
 
 const PokemonCard = ({ pokemon }) => {
   return (
-    <Link to={`/pokemon/${pokemon.id}`}>
+    <Link to={`/pokemon/${pokemon.id}`} className={`${styles.link}`}>
       <article className={`${styles.card} bg-${pokemon.types[0]}`}>
         <div className="bg">
           <img src="/dots.svg" alt="Dots" className={`${styles.dots}`} />
