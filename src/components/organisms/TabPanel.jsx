@@ -17,6 +17,7 @@ export default function TabPanel({ tabs }) {
             key={name}
             name={name}
             onClick={() => setActiveTab(name)}
+            active={activeTab === name}
           />
         ))}
       </div>
