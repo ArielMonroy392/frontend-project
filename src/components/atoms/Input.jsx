@@ -1,5 +1,6 @@
 import Icon from './Icon';
 import styles from './Input.module.css';
+import clsx from 'clsx';
 
 export default function Input({
   type = 'text',
@@ -10,11 +11,16 @@ export default function Input({
   icon,
   ...rest
 }) {
+  const resolvedClasses = className
+    .split(' ')
+    .map(cls => styles[cls])
+    .filter(Boolean);
+
   return (
-    <div className={`${styles.inputContainer} ${className}`}>
+    <div className={styles.inputContainer}>
       {icon && (
-        <div className={styles.inputContainer}>
-          <Icon icon={icon} color={'gray'} size={24} />
+        <div className={styles.inputIcon}>
+          <Icon icon={icon} color="gray" size={24} />
         </div>
       )}
       <input
@@ -22,7 +28,11 @@ export default function Input({
         placeholder={placeholder}
         onChange={onChange}
         value={value}
-        className={`${styles.input} ${icon ? styles.inputWithIcon : ''}`}
+        className={clsx(
+          styles.input,
+          icon && styles.inputWithIcon,
+          ...resolvedClasses
+        )}
         {...rest}
       />
     </div>
