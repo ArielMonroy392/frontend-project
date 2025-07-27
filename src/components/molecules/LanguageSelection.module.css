@@ -1,5 +1,5 @@
 .languageSelection {
-  background-color: #ea5d60;
+  background-color: var(--primary);
   display: flex;
   padding: 3rem 4rem;
   align-items: center;
