@@ -1,6 +1,6 @@
 import styles from './Nav.module.css';
 import Text from '../atoms/Text';
-import LinkNav from './LinkNav';
+import LinkNav from '../atoms/LinkNav';
 
 export default function Nav() {
   return (
