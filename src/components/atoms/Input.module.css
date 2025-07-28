@@ -32,3 +32,15 @@
 .wFull {
   width: 100%;
 }
+
+.border {
+  border: solid 0.1rem gray;
+}
+
+.bg {
+  background-color: rgb(247, 247, 247);
+}
+
+.border:focus {
+  border: solid 0.1rem gray;
+}
