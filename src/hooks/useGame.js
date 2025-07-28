@@ -4,6 +4,7 @@ import {
   MAX_TRIES,
   SUPPORTED_LANGUAGES,
   API_SPRITE_BASE_URL,
+  MAX_POKEMON_ID
 } from '../constants/game';
 import { toast } from 'sonner';
 
@@ -45,7 +46,7 @@ export default function useGame() {
   const fetchRandomPokemon = useCallback(async () => {
     setIsLoading(true);
     const randomArray = Array.from({ length: 4 }, () =>
-      Math.floor(Math.random() * 151 + 1)
+      Math.floor(Math.random() * MAX_POKEMON_ID + 1)
     );
 
     try {

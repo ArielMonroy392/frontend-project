@@ -13,4 +13,4 @@ export const SUPPORTED_LANGUAGES = [
 export const API_BASE_URL = 'https://pokeapi.co/api/v2/pokemon-species';
 export const API_SPRITE_BASE_URL =
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork';
-export const MAX_POKEMON_ID = 151;
+export const MAX_POKEMON_ID = 1025;
