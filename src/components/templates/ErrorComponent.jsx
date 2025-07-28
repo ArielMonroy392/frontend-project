@@ -1,5 +1,5 @@
 import Text from '../atoms/Text.jsx';
-import LinkNav from '../molecules/LinkNav.jsx';
+import LinkNav from '../atoms/LinkNav.jsx';
 import styles from './ErrorComponent.module.css';
 
 export default function ErrorComponent() {
