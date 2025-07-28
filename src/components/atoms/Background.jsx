@@ -1,6 +1,6 @@
 import styles from './Background.module.css';
 
-export default function Background({ size = 'md' }) {
+export default function Background() {
   return (
     <div className={styles.container}>
       <img src="/dots-lg.svg" alt="Dots" className={`${styles.dots}`} />
