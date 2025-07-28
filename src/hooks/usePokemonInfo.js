@@ -15,11 +15,13 @@ const usePokemonInfo = ({ id }) => {
       setLoading(true);
       const pokemonData = await fetchPokemonById(id);
       const speciesData = await fetchPokemonSpecies(id);
-      const formattedPokemon = formatPokemonData(pokemonData, speciesData);
-      const weaknesses = await getSuperEffectiveTypes(
+      const formattedPokemon = await formatPokemonData(
+        pokemonData,
+        speciesData
+      );
+      formattedPokemon['weaknesses'] = await getSuperEffectiveTypes(
         formattedPokemon.types
       );
-      formattedPokemon["weaknesses"] = weaknesses;
       setFormattedPokemon(formattedPokemon);
       console.log(formattedPokemon);
     } catch (err) {

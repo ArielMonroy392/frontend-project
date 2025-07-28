@@ -9,6 +9,7 @@ export default function PokemonInfoPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { pokemon, loading, error } = usePokemonInfo({ id });
+  console.log(pokemon);
 
   const goTo = useCallback(id => navigate(`/pokemon/${id}`), [navigate]);
 
