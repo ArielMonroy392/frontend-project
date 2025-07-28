@@ -6,6 +6,7 @@ import PokemonNavigationButtons from '../molecules/PokemonNavigationButtons';
 import Background from '../atoms/Background';
 import PokemonImage from '../atoms/PokemonImage';
 import styles from './PokemonInfoContent.module.css';
+import PokemonEvolutions from './PokemonEvolutions.jsx';
 
 export default function PokemonInfoContent({
   pokemon,
@@ -16,6 +17,7 @@ export default function PokemonInfoContent({
   const tabs = [
     { name: 'Stats', component: PokemonStats, props: { pokemon } },
     { name: 'Data', component: PokemonData, props: { pokemon } },
+    { name: 'Evolution', component: PokemonEvolutions, props: { pokemon } },
   ];
 
   return (
