@@ -1,0 +1,42 @@
+.pokemonEvolutionTile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
+}
+
+.pokemonEvolutionTile div {
+    text-align: center;
+}
+
+.list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    overflow-x: auto;
+    list-style: none;
+    padding: 0;
+}
+
+.pokemonEvolutionImg {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    height: 10rem;
+}
+
+.pokemonEvolutionContent {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokemonEvolutionContent img {
+    width: 60%;
+}
