@@ -1,6 +1,7 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, Suspense } from 'react';
 import styles from './TabPanel.module.css';
 import TabButton from '../atoms/TabButton.jsx';
+import PokemonLoader from '../atoms/PokeballLoader.jsx';
 
 export default function TabPanel({ tabs }) {
   const [activeTab, setActiveTab] = useState(tabs[0]?.name);
@@ -8,6 +9,9 @@ export default function TabPanel({ tabs }) {
   const ActiveTab = useMemo(() => {
     return tabs.find(tab => tab.name === activeTab);
   }, [activeTab, tabs]);
+
+  const Component = ActiveTab?.component;
+  const props = ActiveTab?.props || {};
 
   return (
     <div>
@@ -26,7 +30,9 @@ export default function TabPanel({ tabs }) {
         key={activeTab}
         className={`${styles.tabContent} ${styles.tabPanelAnimation}`}
       >
-        {ActiveTab?.component(ActiveTab.props || {})}
+        <Suspense fallback={<PokemonLoader />}>
+          {Component && <Component {...props} />}
+        </Suspense>
       </div>
     </div>
   );

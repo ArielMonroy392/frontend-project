@@ -1,12 +1,14 @@
 import TabPanel from './TabPanel';
-import PokemonStats from './PokemonStats';
-import PokemonData from './PokemonData';
 import PokemonHeaderSection from '../molecules/PokemonHeaderSection';
 import PokemonNavigationButtons from '../molecules/PokemonNavigationButtons';
 import Background from '../atoms/Background';
 import PokemonImage from '../atoms/PokemonImage';
 import styles from './PokemonInfoContent.module.css';
-import PokemonEvolutions from './PokemonEvolutions.jsx';
+import { lazy } from 'react';
+
+const PokemonStats = lazy(() => import('./PokemonStats'));
+const PokemonData = lazy(() => import('./PokemonData'));
+const PokemonEvolutions = lazy(() => import('./PokemonEvolutions'));
 
 export default function PokemonInfoContent({
   pokemon,
@@ -24,6 +26,7 @@ export default function PokemonInfoContent({
     <div className={styles.infoContainer}>
       <div className={styles.pokemonInfo}>
         <PokemonHeaderSection pokemon={pokemon} onBack={onBack} />
+
         <TabPanel tabs={tabs} />
       </div>
       <div className={`${styles.pokemonImage} bg-${pokemon.types[0]}`}>
