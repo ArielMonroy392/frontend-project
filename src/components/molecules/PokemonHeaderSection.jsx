@@ -8,8 +8,8 @@ import styles from './PokemonHeaderSection.module.css';
 export default function PokemonHeaderSection({ pokemon, onBack }) {
   return (
     <div className={styles.headerContainer}>
-      <Button onClick={onBack} variant="secondary">
-        <Icon icon={'chevron_right'} size={24} />
+      <Button onClick={onBack} variant="secondary" size={"fit"}>
+        <Icon icon={'left_arrow'} size={24} />
       </Button>
       <PokemonIdentity pokemon={pokemon} size={'large'} color={'black'} />
       <Text className="textGray textXxl fontBold">
