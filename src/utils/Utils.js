@@ -1,9 +1,12 @@
-import { fetchType } from "../services/PokemonServices";
+import { fetchType } from '../services/PokemonServices';
+import axios from 'axios';
 
-function formatPokemonData(pokemon, species) {
+async function formatPokemonData(pokemon, species) {
   const englishFlavor = species.flavor_text_entries.find(
     entry => entry.language.name === 'en'
   );
+
+  const evolutionChainUrl = species.evolution_chain.url;
   let total = 0;
   const formatedPokemon = {
     name: pokemon.name,
@@ -11,6 +14,7 @@ function formatPokemonData(pokemon, species) {
     species: species.genera.find(g => g.language.name === 'en')?.genus,
     height: pokemon.height,
     weight: pokemon.weight,
+    evolution: await getEvolutionChainWithData(evolutionChainUrl, pokemon.name),
     abilities: pokemon.abilities.map(a => ({
       name: a.ability.name,
       hidden: a.is_hidden,
@@ -20,12 +24,25 @@ function formatPokemonData(pokemon, species) {
       const stat = {
         name: s.stat.name,
         base: s.base_stat,
-        max: calculateStat({ base: s.base_stat, iv: 31, ev: 252, level: 100, natureBoost: 1.1, isHp: s.stat.name === "hp" }),
-        min: calculateStat({ base: s.base_stat, iv: 0, ev: 0, level: 100, natureBoost: 1.1, isHp: s.stat.name === "hp" })
-      }
+        max: calculateStat({
+          base: s.base_stat,
+          iv: 31,
+          ev: 252,
+          level: 100,
+          natureBoost: 1.1,
+          isHp: s.stat.name === 'hp',
+        }),
+        min: calculateStat({
+          base: s.base_stat,
+          iv: 0,
+          ev: 0,
+          level: 100,
+          natureBoost: 1.1,
+          isHp: s.stat.name === 'hp',
+        }),
+      };
       return stat;
-    }
-    ),
+    }),
     types: pokemon.types.map(t => t.type.name),
     sprites: {
       official: pokemon.sprites.other['official-artwork'].front_default,
@@ -40,9 +57,9 @@ function formatPokemonData(pokemon, species) {
     name: 'total',
     base: total,
     max: 'MAX',
-    min: 'MIN'
-  })
-  return formatedPokemon
+    min: 'MIN',
+  });
+  return formatedPokemon;
 }
 
 function formatPokemon(pokemon) {
@@ -56,7 +73,6 @@ function formatPokemon(pokemon) {
     id: pokemon.id,
   };
 }
-
 
 function generationNameToNumber(name) {
   console.log(name);
@@ -81,9 +97,7 @@ function generationNameToNumber(name) {
 
 async function getSuperEffectiveTypes(pokemonTypes) {
   const typeDataList = await Promise.all(
-    pokemonTypes.map(type =>
-      fetchType(type)
-    )
+    pokemonTypes.map(type => fetchType(type))
   );
 
   const typeEffectiveness = {};
@@ -109,15 +123,74 @@ async function getSuperEffectiveTypes(pokemonTypes) {
   return superEffective;
 }
 
-
-
-export { formatPokemonData, formatPokemon, getSuperEffectiveTypes };
-
-function calculateStat({ base, iv = 31, ev = 0, level = 50, natureBoost = 1.0, isHp = false }) {
+function calculateStat({
+  base,
+  iv = 31,
+  ev = 0,
+  level = 50,
+  natureBoost = 1.0,
+  isHp = false,
+}) {
   if (isHp) {
-    if (base === 1) return 1; // Pokémon como Shedinja
-    return Math.floor((((2 * base + iv + Math.floor(ev / 4)) * level) / 100) + level + 10);
+    if (base === 1) return 1;
+    return Math.floor(
+      ((2 * base + iv + Math.floor(ev / 4)) * level) / 100 + level + 10
+    );
   } else {
-    return Math.floor(((((2 * base + iv + Math.floor(ev / 4)) * level) / 100) + 5) * natureBoost);
+    return Math.floor(
+      (((2 * base + iv + Math.floor(ev / 4)) * level) / 100 + 5) * natureBoost
+    );
   }
 }
+
+async function getEvolutionChainWithData(
+  evolutionChainUrl,
+  currentPokemonName
+) {
+  const evolutionRes = await fetch(evolutionChainUrl);
+  const evolutionData = await evolutionRes.json();
+
+  const names = [];
+
+  function traverse(node) {
+    if (!node) return;
+    names.push(node.species.name);
+    if (node.evolves_to && node.evolves_to.length > 0) {
+      traverse(node.evolves_to[0]);
+    }
+  }
+
+  traverse(evolutionData.chain);
+
+  const detailed = await Promise.all(
+    names.map(async name => {
+      const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+      return {
+        id: res.data.id,
+        name: res.data.name,
+        sprites: {
+          front_default: res.data.sprites.front_default,
+          official_artwork:
+            res.data.sprites.other['official-artwork'].front_default,
+        },
+        types: res.data.types.map(t => t.type.name),
+      };
+    })
+  );
+
+  const currentIndex = detailed.findIndex(
+    p => p.name === currentPokemonName.toLowerCase()
+  );
+
+  return {
+    chain: detailed,
+    currentIndex,
+  };
+}
+
+export {
+  formatPokemonData,
+  formatPokemon,
+  getSuperEffectiveTypes,
+  getEvolutionChainWithData,
+};
