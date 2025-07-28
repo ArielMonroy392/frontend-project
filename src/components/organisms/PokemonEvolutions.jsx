@@ -8,7 +8,9 @@ export default function PokemonEvolutions({ pokemon }) {
 
   return (
     <div className={styles.pokemonEvolutions}>
-      <Text className="textBlack capitalize fontBold">Evolution Chart</Text>
+      <Text className={`text-${pokemon.types[0]} capitalize fontBold`}>
+        Evolution Chart
+      </Text>
       <ul className={styles.pokemonEvolutionsList}>
         {pokemon.evolution.chain.map((evolution, index) => (
           <PokemonEvolutionTile evolution={evolution} key={index} />
