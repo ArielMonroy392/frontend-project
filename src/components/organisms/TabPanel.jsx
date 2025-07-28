@@ -30,7 +30,7 @@ export default function TabPanel({ tabs }) {
         key={activeTab}
         className={`${styles.tabContent} ${styles.tabPanelAnimation}`}
       >
-        <Suspense fallback={<PokemonLoader />}>
+        <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}><PokemonLoader /></div>}>
           {Component && <Component {...props} />}
         </Suspense>
       </div>
