@@ -7,14 +7,16 @@ export default function StatItem({ stat }) {
       <span className={styles.title}>
         <Text className={`textBlack capitalize fontBold`}>{stat.name}</Text>
       </span>
-      <Text>{stat.base}</Text>
-      <span style={{ width: '5rem' }}>
+      <span className={styles.data}>
+        <Text>{stat.base}</Text>
+      </span>
+      <span className={styles.data}>
         {stat.name !== 'total' && (
           <progress className={styles.bar} value={stat.base} max={255} />
         )}
       </span>
-      <Text> {stat.min}</Text>
-      <Text> {stat.max}</Text>
+      <span className={styles.data}><Text> {stat.min}</Text></span>
+      <span className={styles.data}><Text> {stat.max}</Text></span>
     </li>
   );
 }

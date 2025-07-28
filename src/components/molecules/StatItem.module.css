@@ -8,9 +8,26 @@
 }
 
 .title {
+  text-align: start;
+}
+
+.statItem>span {
   flex: 0 1 8rem;
+}
+
+.data {
+  text-align: center;
 }
 
 .bar {
   width: 100%;
+  appearance: none;
+}
+
+.bar::-webkit-progress-bar {
+  color: #62B957;
+  height: 0.5rem;
+  background-color: transparent;
+  border: 0.02rem solid gray;
+  border-radius: 0.2rem;
 }
