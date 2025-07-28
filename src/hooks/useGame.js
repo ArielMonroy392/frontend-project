@@ -7,6 +7,7 @@ import {
   MAX_POKEMON_ID
 } from '../constants/game';
 import { toast } from 'sonner';
+import axios from 'axios';
 
 export default function useGame() {
   const [randomPoke, setRandomPoke] = useState([]);
@@ -52,9 +53,8 @@ export default function useGame() {
     try {
       const randomPokemon = await Promise.all(
         randomArray.map(async val => {
-          const res = await fetch(`${API_BASE_URL}/${val}`);
-          const data = await res.json();
-          return data;
+          const res = await axios.get(`${API_BASE_URL}/${val}`);
+          return res.data;
         })
       );
 
@@ -84,7 +84,7 @@ export default function useGame() {
       setHiddenPoke(hiddenPokemon);
       setRandomPoke(mappedPokemon);
     } catch (error) {
-      console.error('Error fetching Pokémon:', error);
+      toast.error('Error fetching Pokémon:', error);
     } finally {
       setIsLoading(false);
     }
