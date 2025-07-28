@@ -7,10 +7,11 @@ export default function Button({
   onClick,
   disabled = false,
   type = 'button',
+  size = null
 }) {
   return (
     <button
-      className={`${styles.button} ${styles[variant]} ${className || ''}`}
+      className={`${styles.button} ${styles[variant]} ${className || ''} ${size && styles[size]}`}
       onClick={onClick}
       disabled={disabled}
       type={type}
