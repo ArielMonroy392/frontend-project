@@ -3,7 +3,7 @@ import {
   fetchPokemonById,
   fetchPokemonSpecies,
 } from '../services/PokemonServices';
-import { formatPokemonData, getSuperEffectiveTypes } from '../utils/Utils';
+import { formatPokemonData } from '../utils/Utils';
 
 const usePokemonInfo = ({ id }) => {
   const [formattedPokemon, setFormattedPokemon] = useState(null);
@@ -18,9 +18,6 @@ const usePokemonInfo = ({ id }) => {
       const formattedPokemon = await formatPokemonData(
         pokemonData,
         speciesData
-      );
-      formattedPokemon['weaknesses'] = await getSuperEffectiveTypes(
-        formattedPokemon.types
       );
       setFormattedPokemon(formattedPokemon);
       console.log(formattedPokemon);
