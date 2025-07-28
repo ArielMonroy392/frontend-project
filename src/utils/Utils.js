@@ -37,7 +37,7 @@ async function formatPokemonData(pokemon, species) {
           iv: 0,
           ev: 0,
           level: 100,
-          natureBoost: 1.1,
+          natureBoost: 0.9,
           isHp: s.stat.name === 'hp',
         }),
       };
@@ -52,6 +52,9 @@ async function formatPokemonData(pokemon, species) {
     flavor_text: englishFlavor?.flavor_text?.replace(/\f|\n/g, ' ').trim(),
     generation: generationNameToNumber(species.generation.name),
   };
+  formatedPokemon.weaknesses = await getSuperEffectiveTypes(
+    formatedPokemon.types
+  );
 
   formatedPokemon.stats.push({
     name: 'total',
@@ -75,7 +78,6 @@ function formatPokemon(pokemon) {
 }
 
 function generationNameToNumber(name) {
-  console.log(name);
   const romanMap = {
     i: 1,
     ii: 2,
@@ -144,9 +146,8 @@ function calculateStat({
 }
 
 async function getEvolutionChain(evolutionChainUrl, currentPokemonName) {
-  const evolutionRes = await fetch(evolutionChainUrl);
-  const evolutionData = await evolutionRes.json();
-
+  const evolutionRes = await axios.get(evolutionChainUrl);
+  const evolutionData = evolutionRes.data;
   const names = new Set();
 
   function traverse(node) {
@@ -160,16 +161,7 @@ async function getEvolutionChain(evolutionChainUrl, currentPokemonName) {
   const detailed = await Promise.all(
     Array.from(names).map(async name => {
       const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-      return {
-        id: res.data.id,
-        name: res.data.name,
-        sprites: {
-          front_default: res.data.sprites.front_default,
-          official_artwork:
-            res.data.sprites.other['official-artwork'].front_default,
-        },
-        types: res.data.types.map(t => t.type.name),
-      };
+      return formatPokemon(res.data);
     })
   );
 
@@ -186,6 +178,4 @@ async function getEvolutionChain(evolutionChainUrl, currentPokemonName) {
 export {
   formatPokemonData,
   formatPokemon,
-  getSuperEffectiveTypes,
-  getEvolutionChain as getEvolutionChainWithData,
 };
