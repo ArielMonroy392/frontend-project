@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 import usePokemonInfo from '../../hooks/usePokemonInfo';
 import PokemonLoader from '../atoms/PokeballLoader';
 import PokemonInfoContent from '../organisms/PokemonInfoContent';
+import styles from "./PokemonInfo.module.css"
 
 export default function PokemonInfoPage() {
   const { id } = useParams();
@@ -18,7 +19,11 @@ export default function PokemonInfoPage() {
 
   return (
     <>
-      {loading && <PokemonLoader />}
+      {loading &&
+        <div className={styles.loaderContainer}>
+          <PokemonLoader />
+        </div>
+      }
       {error && <p className="error">Error: {error}</p>}
       {pokemon && (
         <PokemonInfoContent
