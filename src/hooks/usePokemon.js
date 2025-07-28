@@ -80,8 +80,8 @@ export const usePokemon = ({ initialData }) => {
         );
         return;
       }
-      const min = Number(newLimits[0]);
-      const max = Number(newLimits[1]);
+      const min = parseInt(newLimits[0]);
+      const max = parseInt(newLimits[1]);
       setLimits([min, max]);
       setFilteredPokemons(pokemons.slice(min - 1, max));
       setSearchValue('');
