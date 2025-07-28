@@ -81,8 +81,8 @@ export default function PokemonList({
           onSubmit={handleSetNewLimits}
           className={styles.pokemonListRangeForm}
         >
-          <Input ref={minLimitInput} id="min" type="number" placeholder="Min" />
-          <Input ref={maxLimitInput} id="max" type="number" placeholder="Max" />
+          <Input ref={minLimitInput} id="min" type="number" placeholder="Min" className='bg border' />
+          <Input ref={maxLimitInput} id="max" type="number" placeholder="Max" className='bg border' />
           <Button type="submit">Apply</Button>
         </form>
         <div className={styles.pokemonListRangeActions}>
