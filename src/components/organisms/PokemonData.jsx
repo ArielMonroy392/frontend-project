@@ -5,43 +5,47 @@ import styles from './PokemonData.module.css';
 export default function PokemonData({ pokemon }) {
   return (
     <div className={styles.pokemonData}>
-      <Text className={`text-${pokemon.types[0]} capitalize font-bold`}>
+      <Text className={`text-${pokemon.types[0]} capitalize fontBold`}>
         {' '}
         About this pokemon
       </Text>
       <p>{pokemon.flavor_text}</p>
       <ul className={styles.pokemonDataList}>
         <li>
-          <Text className={'text-black capitalize font-bold'}>Species: </Text>{' '}
+          <Text className={'text-black capitalize fontBold'}>Species: </Text>{' '}
           {pokemon.species}
         </li>
         <li>
-          <Text className={'text-black capitalize font-bold'}>Height: </Text>{' '}
+          <Text className={'text-black capitalize fontBold'}>Height: </Text>{' '}
           {pokemon.height} m
         </li>
         <li>
-          <Text className={'text-black capitalize font-bold'}>Weight: </Text>{' '}
+          <Text className={'text-black capitalize fontBold'}>Weight: </Text>{' '}
           {pokemon.weight} kg
         </li>
         <li>
-          <Text className={'text-black capitalize font-bold'}>Abilities: </Text>{' '}
-          {pokemon.abilities.map(ability => {
-            return (
-              <Text className={'text-black capitalize'} key={ability.name}>
-                {ability.name} {ability.hidden ? '(Hidden)' : ''}
-              </Text>
-            );
-          })}
+          <Text className={'text-black capitalize fontBold'}>Abilities: </Text>{' '}
+          <ul className={styles.list}>
+            {pokemon.abilities.map(ability => {
+              return (
+                <Text className={'text-black capitalize'} key={ability.name}>
+                  {ability.name} {ability.hidden ? '(Hidden)' : ''}
+                </Text>
+              );
+            })}
+          </ul>
         </li>
         <li>
-          <Text className={'text-black capitalize font-bold'}>Weakness: </Text>
-          {pokemon.weaknesses.length > 0 ? (
-            pokemon.weaknesses.map((weakness, index) => (
-              <TypeBadge key={index} onlyIcon type={weakness} />
-            ))
-          ) : (
-            <Text className={'text-black capitalize'}>None</Text>
-          )}
+          <Text className={'text-black capitalize fontBold'}>Weakness: </Text>
+          <ul className={styles.list}>
+            {pokemon.weaknesses.length > 0 ? (
+              pokemon.weaknesses.map((weakness, index) => (
+                <TypeBadge key={index} onlyIcon type={weakness} />
+              ))
+            ) : (
+              <Text className={'text-black capitalize'}>None</Text>
+            )}
+          </ul>
         </li>
       </ul>
     </div>
