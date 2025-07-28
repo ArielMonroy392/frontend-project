@@ -5,7 +5,7 @@ import styles from './PokemonEvolutionTile.module.css';
 
 export default function PokemonEvolutionTile({ evolution }) {
   if (!evolution) return null;
-
+  const randomNumber = Math.floor(Math.random() * 5) + 1;
   return (
     <div className={styles.pokemonEvolutionTile}>
       <img
@@ -15,7 +15,7 @@ export default function PokemonEvolutionTile({ evolution }) {
       />
       <div className={styles.pokemonEvolutionContent}>
         <PokemonImage
-          src={evolution.sprites['official_artwork']}
+          src={randomNumber === 3 ? evolution.sprites.shiny : evolution.sprites.official}
           alt={evolution.name}
         />
         <PokemonIdentity pokemon={evolution} color={'black'} />
