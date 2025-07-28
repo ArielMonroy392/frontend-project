@@ -28,14 +28,6 @@ const router = createBrowserRouter([
             initialData: await fetchPokemons({ offset: 0, limit: 25 }),
           };
         },
-        lazy: async () => {
-          console.log('Lazy loading List component');
-          const [List, loader] = await Promise.all([
-            import('./components/pages/List.jsx'),
-            import('./components/atoms/PokeballLoader.jsx'),
-          ]);
-          return { default: List, loader: loader.default };
-        },
       },
       { path: 'pokemon/:id', Component: PokemonInfo },
       { path: 'pokemon/error', Component: ErrorComponent },
