@@ -5,7 +5,7 @@ export default function Background() {
     <div className={styles.container}>
       <img src="/dots-lg.svg" alt="Dots" className={`${styles.dots}`} />
       <img
-        src="/pokeball-lg.svg"
+        src="/pokeball-lg-white.svg"
         alt="Pokeball"
         className={`${styles.pokeball}`}
       />
