@@ -14,7 +14,7 @@ async function formatPokemonData(pokemon, species) {
     species: species.genera.find(g => g.language.name === 'en')?.genus,
     height: pokemon.height,
     weight: pokemon.weight,
-    evolution: await getEvolutionChainWithData(evolutionChainUrl, pokemon.name),
+    evolution: await getEvolutionChain(evolutionChainUrl, pokemon.name),
     abilities: pokemon.abilities.map(a => ({
       name: a.ability.name,
       hidden: a.is_hidden,
@@ -143,27 +143,22 @@ function calculateStat({
   }
 }
 
-async function getEvolutionChainWithData(
-  evolutionChainUrl,
-  currentPokemonName
-) {
+async function getEvolutionChain(evolutionChainUrl, currentPokemonName) {
   const evolutionRes = await fetch(evolutionChainUrl);
   const evolutionData = await evolutionRes.json();
 
-  const names = [];
+  const names = new Set();
 
   function traverse(node) {
     if (!node) return;
-    names.push(node.species.name);
-    if (node.evolves_to && node.evolves_to.length > 0) {
-      traverse(node.evolves_to[0]);
-    }
+    names.add(node.species.name);
+    node.evolves_to.forEach(child => traverse(child));
   }
 
   traverse(evolutionData.chain);
 
   const detailed = await Promise.all(
-    names.map(async name => {
+    Array.from(names).map(async name => {
       const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
       return {
         id: res.data.id,
@@ -192,5 +187,5 @@ export {
   formatPokemonData,
   formatPokemon,
   getSuperEffectiveTypes,
-  getEvolutionChainWithData,
+  getEvolutionChain as getEvolutionChainWithData,
 };
